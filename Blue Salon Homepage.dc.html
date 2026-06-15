@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap">
+<link rel="stylesheet" href="_ds/blue-salon-design-system-2e96cc8e-316e-4712-8b81-ecf6a8190b5f/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/blue-salon-design-system-2e96cc8e-316e-4712-8b81-ecf6a8190b5f/tokens/colors.css">
+<link rel="stylesheet" href="_ds/blue-salon-design-system-2e96cc8e-316e-4712-8b81-ecf6a8190b5f/tokens/typography.css">
+<link rel="stylesheet" href="_ds/blue-salon-design-system-2e96cc8e-316e-4712-8b81-ecf6a8190b5f/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/blue-salon-design-system-2e96cc8e-316e-4712-8b81-ecf6a8190b5f/tokens/elevation.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #ffffff;
+    color: #36414e;
+    font-family: "Qatar", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .bs-serif { font-family: "Cormorant Garamond", Georgia, serif; }
+  ::selection { background: rgba(194,162,94,.25); }
+  input::placeholder { color: #a7b0bb; }
+  @keyframes bsHeroIn { from { opacity:.0; } to { opacity:1; } }
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="background:#ffffff; overflow-x:hidden;">
+
+  <!-- ============ ANNOUNCEMENT BAR ============ -->
+  <div style="background:#f3ece0; text-align:center; padding:9px 16px;">
+    <span style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#003976;">Exclusive members earn double points this week</span>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header data-screen-label="Header" onMouseLeave="{{ closeMega }}" style="background:#ffffff; border-bottom:1px solid #ece9e3; position:sticky; top:0; z-index:90;">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:74px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center;">
+      <a href="#" style="justify-self:start; display:flex; align-items:center;">
+        <img src="assets/logo-horizontal.svg" alt="Blue Salon" style="height:26px; width:auto; display:block;">
+      </a>
+      <nav style="justify-self:center; display:flex; align-items:center; gap:30px;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="8">
+          <a href="#" onMouseEnter="{{ item.enter }}" style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:{{ item.color }}; text-decoration:none; padding:27px 2px; border-bottom:1px solid transparent; transition:border-color .3s ease;" style-hover="border-bottom:1px solid #003976;">{{ item.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="justify-self:end; display:flex; align-items:center; gap:22px; color:#0e1722;">
+        <button onClick="{{ openSearch }}" aria-label="Search" style="background:none; border:0; cursor:pointer; color:inherit; display:flex; padding:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+        </button>
+        <a href="#" aria-label="Account" style="color:inherit; display:flex;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+        </a>
+        <a href="#" aria-label="Bag" style="color:inherit; display:flex; position:relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l-1 12H7L6 8z"></path><path d="M9 8V6.5C9 4.6 10.3 3.5 12 3.5S15 4.6 15 6.5V8"></path></svg>
+          <span style="position:absolute; top:-7px; right:-8px; min-width:15px; height:15px; padding:0 3px; border-radius:999px; background:#003976; color:#fff; font-size:9px; line-height:15px; text-align:center;">2</span>
+        </a>
+      </div>
+    </div>
+    <sc-if value="{{ megaOpen }}">
+      <div style="position:absolute; left:0; right:0; top:100%; z-index:95; background:#ffffff; border-top:1px solid #ece9e3; box-shadow:0 26px 44px rgba(0,42,87,.10);">
+        <div style="max-width:1280px; margin:0 auto; padding:42px 40px 48px; display:flex; gap:56px; align-items:stretch;">
+          <div style="display:flex; gap:56px; flex:1;">
+            <sc-for list="{{ mega.columns }}" as="col" hint-placeholder-count="3">
+              <div>
+                <p style="font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:#9a7b3f; margin:0 0 18px;">{{ col.title }}</p>
+                <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+                  <sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="4">
+                    <li><a href="#" style="font-size:13px; color:#586473; text-decoration:none; transition:color .3s ease;" style-hover="color:#003976;">{{ lk }}</a></li>
+                  </sc-for>
+                </ul>
+              </div>
+            </sc-for>
+          </div>
+          <div style="width:300px; flex-shrink:0; background:{{ mega.feat.tone }}; padding:30px; display:flex; flex-direction:column; justify-content:flex-end; min-height:224px;">
+            <p style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#9a7b3f; margin:0;">{{ mega.feat.eyebrow }}</p>
+            <h4 class="bs-serif" style="font-weight:400; font-size:25px; line-height:1.15; color:#16273b; margin:12px 0 18px;">{{ mega.feat.title }}</h4>
+            <a href="#" style="display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:{{ mega.feat.ctaColor }}; text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:5px; width:fit-content;">{{ mega.feat.cta }}</a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ============ SEARCH OVERLAY ============ -->
+  <sc-if value="{{ searchOpen }}">
+    <div style="position:fixed; inset:0; z-index:300;">
+      <div onClick="{{ closeSearch }}" style="position:absolute; inset:0; background:rgba(14,23,34,.32);"></div>
+      <div style="position:relative; background:#ffffff; padding:46px 0 52px; border-bottom:1px solid #ece9e3;">
+        <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#9a7b3f;">Search</span>
+            <button onClick="{{ closeSearch }}" aria-label="Close" style="background:none; border:0; cursor:pointer; color:#0e1722; display:flex; padding:6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+            </button>
+          </div>
+          <input type="text" autofocus placeholder="Search for products, brands and more" style="width:100%; border:0; border-bottom:1px solid #cdd4dc; background:transparent; outline:none; font-family:'Cormorant Garamond',Georgia,serif; font-weight:400; font-size:34px; color:#0e1722; padding:12px 0;">
+          <div style="display:flex; gap:34px; margin-top:30px; flex-wrap:wrap; align-items:center;">
+            <span style="font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:#9aa3ad;">Popular</span>
+            <div style="display:flex; gap:26px; flex-wrap:wrap;">
+              <sc-for list="{{ topSearches }}" as="term" hint-placeholder-count="5">
+                <span style="font-size:14px; color:#36414e; cursor:pointer; border-bottom:1px solid transparent; padding-bottom:2px;" style-hover="border-bottom:1px solid #9a7b3f; color:#0e1722;">{{ term }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <main>
+    <!-- ============ HERO CAROUSEL ============ -->
+    <section data-screen-label="Hero carousel" style="position:relative; background:#f1ebe0; border-bottom:1px solid #e7e1d6; overflow:hidden;">
+      <div style="max-width:1280px; margin:0 auto; padding:0 40px; min-height:520px; display:flex; align-items:center; position:relative;">
+
+        <div style="position:relative; z-index:2; padding:88px 0 96px; max-width:560px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:26px;">
+            <span style="width:34px; height:1px; background:#9a7b3f;"></span>
+            <span style="font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#9a7b3f;">{{ heroEyebrow }}</span>
+          </div>
+          <h1 class="bs-serif" style="font-weight:400; font-size:clamp(46px,5.4vw,82px); line-height:1.02; letter-spacing:.005em; text-transform:uppercase; color:#16273b; margin:0; white-space:pre-line;">{{ heroTitle }}</h1>
+          <a href="#" style="display:inline-flex; align-items:center; gap:14px; margin-top:42px; background:#003976; color:#ffffff; text-decoration:none; font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:16px 30px; border-radius:2px; transition:background .3s ease;" style-hover="background:#002a57;">{{ heroCta }}
+            <svg width="20" height="9" viewBox="0 0 22 9" fill="none" stroke="currentColor" stroke-width="1.3"><line x1="0" y1="4.5" x2="19" y2="4.5"></line><path d="M15.5 1l4 3.5-4 3.5"></path></svg>
+          </a>
+        </div>
+
+        <!-- curated by experts badge -->
+        <div style="position:absolute; right:0; top:50%; transform:translateY(-50%); width:118px; height:118px; border:1px solid rgba(154,123,63,.45); background:rgba(255,255,255,.4); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9a7b3f" stroke-width="1.3"><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg>
+          <span style="font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:#5c5240; line-height:1.5;">Curated<br>by<br>experts</span>
+        </div>
+
+        <!-- arrows -->
+        <button onClick="{{ prev }}" aria-label="Previous" style="position:absolute; left:0px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid rgba(22,39,59,.25); background:rgba(255,255,255,.35); cursor:pointer; display:flex; align-items:center; justify-content:center; color:#16273b; transition:background .3s ease, border-color .3s ease;" style-hover="background:#fff; border-color:#16273b;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M15 5l-7 7 7 7"></path></svg>
+        </button>
+        <button onClick="{{ next }}" aria-label="Next" style="position:absolute; right:0px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid rgba(22,39,59,.25); background:rgba(255,255,255,.35); cursor:pointer; display:flex; align-items:center; justify-content:center; color:#16273b; transition:background .3s ease, border-color .3s ease;" style-hover="background:#fff; border-color:#16273b;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <!-- slide indicator -->
+        <div style="position:absolute; left:50%; bottom:30px; transform:translateX(-50%); display:flex; align-items:center; gap:18px;">
+          <span style="font-size:11px; letter-spacing:.16em; color:#5c5240;">{{ heroIndicator }}</span>
+          <div style="display:flex; gap:8px;">
+            <button onClick="{{ d0 }}" aria-label="Slide 1" style="{{ seg0 }}"></button>
+            <button onClick="{{ d1 }}" aria-label="Slide 2" style="{{ seg1 }}"></button>
+            <button onClick="{{ d2 }}" aria-label="Slide 3" style="{{ seg2 }}"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST BAR ============ -->
+    <section data-screen-label="Trust bar" style="border-bottom:1px solid #ece9e3;">
+      <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr);">
+          <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex; align-items:center; gap:14px; padding:24px 20px; border-right:1px solid #ece9e3;">
+              <span style="color:#003976; display:flex; flex-shrink:0;" dangerouslySetInnerHTML="{{ t.icon }}"></span>
+              <div style="min-width:0;">
+                <p style="font-size:12px; letter-spacing:.03em; color:#16273b; margin:0; font-weight:500; white-space:nowrap;">{{ t.title }}</p>
+                <p style="font-size:11px; color:#8a93a0; margin:5px 0 0; white-space:nowrap;">{{ t.desc }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CATEGORY COMPOSITION ============ -->
+    <section data-screen-label="Shop by category" style="max-width:1280px; margin:0 auto; padding:84px 40px 0;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; align-items:stretch;">
+
+        <!-- left: women top -->
+        <div style="position:relative; display:block; height:470px; overflow:hidden; background:#e9e0d2;">
+          <image-slot id="img-women-top" fit="cover" shape="rect" placeholder="Women Top" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+          <div style="position:absolute; left:0; right:0; bottom:0; height:96px; background:linear-gradient(to top, rgba(248,246,242,.92), rgba(248,246,242,0)); pointer-events:none;"></div>
+          <span style="position:absolute; left:0; right:0; bottom:24px; text-align:center; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#16273b; pointer-events:none;">Women Top</span>
+        </div>
+
+        <!-- center: heading + bags -->
+        <div style="display:flex; flex-direction:column; height:470px;">
+          <div style="text-align:center; padding:8px 0 22px;">
+            <p style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#9a7b3f; margin:0 0 12px;">Top Categories</p>
+            <h2 class="bs-serif" style="font-weight:400; font-size:30px; line-height:1.15; color:#16273b; margin:0;">I am Looking<br>For Fashion</h2>
+            <div style="width:34px; height:1px; background:#c2a25e; margin:18px auto 0;"></div>
+          </div>
+          <div style="position:relative; display:block; flex:1; overflow:hidden; background:#efe7da;">
+            <image-slot id="img-bags" fit="cover" shape="rect" placeholder="Bags" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            <div style="position:absolute; left:0; right:0; bottom:0; background:#003976; text-align:center; padding:13px; pointer-events:none;">
+              <span style="font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#fff;">Shop Bags</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- right: belts + shoes -->
+        <div style="display:flex; flex-direction:column; gap:24px; height:470px;">
+          <div style="position:relative; display:block; flex:1; overflow:hidden; background:#ece4d6;">
+            <image-slot id="img-belts" fit="cover" shape="rect" placeholder="Belts" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            <div style="position:absolute; left:0; right:0; bottom:0; height:70px; background:linear-gradient(to top, rgba(248,246,242,.92), rgba(248,246,242,0)); pointer-events:none;"></div>
+            <span style="position:absolute; left:0; right:0; bottom:16px; text-align:center; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:#16273b; pointer-events:none;">Belts</span>
+          </div>
+          <div style="position:relative; display:block; flex:1; overflow:hidden; background:#e7ddcd;">
+            <image-slot id="img-shoes" fit="cover" shape="rect" placeholder="Shoes" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            <div style="position:absolute; left:0; right:0; bottom:0; height:70px; background:linear-gradient(to top, rgba(248,246,242,.92), rgba(248,246,242,0)); pointer-events:none;"></div>
+            <span style="position:absolute; left:0; right:0; bottom:16px; text-align:center; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:#16273b; pointer-events:none;">Shoes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2026 COLLECTIONS ============ -->
+    <section data-screen-label="New Arrivals" style="max-width:1280px; margin:0 auto; padding:96px 40px 0;">
+      <div style="display:grid; grid-template-columns:0.8fr 2.2fr; gap:48px; align-items:center;">
+        <div>
+          <p style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#9a7b3f; margin:0;">New Arrivals</p>
+          <h2 class="bs-serif" style="font-weight:400; font-size:38px; line-height:1.1; color:#16273b; margin:14px 0 0;">2026 Collections</h2>
+          <p style="font-size:14px; line-height:1.7; color:#8a93a0; margin:22px 0 0;">A new chapter of the season's most desirable silhouettes — crafted by the houses we hold closest.</p>
+          <a href="#" style="display:inline-block; margin-top:26px; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#16273b; text-decoration:none; border-bottom:1px solid #16273b; padding-bottom:5px;">Shop New Collections</a>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;">
+          <sc-for list="{{ arrivals }}" as="p" hint-placeholder-count="3">
+            <div>
+              <div style="position:relative; display:block; height:300px; overflow:hidden; background:{{ p.tone }};">
+                <image-slot id="{{ p.slotId }}" fit="cover" shape="rect" placeholder="{{ p.name }}" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:16px;">
+                <p style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#16273b; margin:0;">{{ p.name }}</p>
+                <p style="font-size:11.5px; color:#586473; margin:0;">{{ p.price }}</p>
+              </div>
+              <div style="display:flex; align-items:center; gap:7px; margin-top:12px;">
+                <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="3">
+                  <span style="width:13px; height:13px; border-radius:2px; border:1px solid rgba(0,0,0,.12); background:{{ sw }};"></span>
+                </sc-for>
+                <sc-if value="{{ p.extra }}"><span style="font-size:10.5px; color:#8a93a0; margin-left:3px;">{{ p.extra }}</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STAGE BANNER ============ -->
+    <section data-screen-label="Blue Salon STAGE" style="margin-top:96px;">
+      <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+        <div style="position:relative; height:200px; background:#1c2733; overflow:hidden; display:flex; align-items:center; justify-content:space-between; padding:0 56px;">
+          <image-slot id="img-stage" fit="cover" shape="rect" placeholder="Campaign image" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(15,20,28,.82) 0%, rgba(15,20,28,.42) 50%, rgba(15,20,28,.66) 100%); pointer-events:none;"></div>
+          <div style="position:relative;">
+            <p style="font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.6); margin:0 0 10px;">Introducing</p>
+            <h2 class="bs-serif" style="font-weight:400; font-size:46px; line-height:1; color:#fff; margin:0;">Blue Salon</h2>
+          </div>
+          <div style="position:relative; display:flex; flex-direction:column; align-items:flex-end; gap:14px;">
+            <span class="bs-serif" style="font-weight:600; font-size:64px; line-height:.9; letter-spacing:.04em; color:#fff; text-transform:uppercase;">Stage</span>
+            <a href="#" style="font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.5); padding-bottom:4px; white-space:nowrap;">Discover Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED BRANDS ============ -->
+    <section data-screen-label="Featured Brands" style="max-width:1280px; margin:0 auto; padding:88px 40px 0;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:46px;">
+        <div>
+          <p style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#9a7b3f; margin:0;">Our Portfolio</p>
+          <h2 class="bs-serif" style="font-weight:400; font-size:34px; color:#16273b; margin:12px 0 0;">Featured <span style="font-style:italic;">Brands</span></h2>
+        </div>
+        <a href="#" style="font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#16273b; text-decoration:none; border-bottom:1px solid #16273b; padding-bottom:5px; white-space:nowrap;">All Brands</a>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; row-gap:26px;">
+        <sc-for list="{{ brands }}" as="b" hint-placeholder-count="8">
+          <span style="padding:0 clamp(14px,2vw,30px); border-left:1px solid #e7e1d6; color:#3a4250; white-space:nowrap;">
+            <span style="{{ b.style }}">{{ b.name }}</span>
+          </span>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ============ TRENDING NOW ============ -->
+    <section data-screen-label="Trending Now" style="max-width:1280px; margin:0 auto; padding:88px 40px 0;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px;">
+        <div>
+          <p style="font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:#9a7b3f; margin:0;">Curated For You</p>
+          <h2 class="bs-serif" style="font-weight:400; font-size:34px; color:#16273b; margin:12px 0 0;">Trending <span style="font-style:italic;">Now</span></h2>
+        </div>
+        <a href="#" style="font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#16273b; text-decoration:none; border-bottom:1px solid #16273b; padding-bottom:5px; white-space:nowrap;">View All</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;">
+        <sc-for list="{{ trending }}" as="p" hint-placeholder-count="3">
+          <div>
+            <div style="position:relative; display:block; height:400px; overflow:hidden; background:{{ p.tone }};">
+              <image-slot id="{{ p.slotId }}" fit="cover" shape="rect" placeholder="{{ p.name }}" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:18px;">
+              <p style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#16273b; margin:0;">{{ p.name }}</p>
+              <p style="font-size:11.5px; color:#586473; margin:0;">{{ p.price }}</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:7px; margin-top:12px;">
+              <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="3">
+                <span style="width:13px; height:13px; border-radius:2px; border:1px solid rgba(0,0,0,.12); background:{{ sw }};"></span>
+              </sc-for>
+              <sc-if value="{{ p.extra }}"><span style="font-size:10.5px; color:#8a93a0; margin-left:3px;">{{ p.extra }}</span></sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ============ DUAL PROMO ============ -->
+    <section data-screen-label="Membership & App" style="max-width:1280px; margin:0 auto; padding:96px 40px 0;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <!-- rewards -->
+        <div style="background:#11151b; color:#fff; padding:62px 40px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+          <span class="bs-serif" style="font-size:13px; letter-spacing:.42em; text-transform:uppercase; color:rgba(255,255,255,.85);">Maison</span>
+          <p style="font-size:14.5px; line-height:1.7; color:rgba(255,255,255,.72); margin:22px 0 30px; max-width:300px;">Enjoy exclusive rewards, private previews and member-only offers.</p>
+          <a href="#" style="background:#fff; color:#11151b; text-decoration:none; font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:15px 34px; border-radius:2px;">Join or Log In</a>
+        </div>
+        <!-- app -->
+        <div style="background:#f5f1ea; padding:48px 44px; display:flex; align-items:center; gap:36px;">
+          <div style="position:relative; width:150px; height:210px; flex-shrink:0; background:#dfd6c7; border-radius:18px; overflow:hidden; box-shadow:0 12px 30px rgba(0,42,87,.12);">
+            <image-slot id="img-app" fit="cover" shape="rect" placeholder="App preview" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+          </div>
+          <div>
+            <h3 class="bs-serif" style="font-weight:400; font-size:26px; line-height:1.2; color:#16273b; margin:0;">Get 10% off your<br>first app order</h3>
+            <p style="font-size:13px; color:#586473; margin:14px 0 24px;">Enter code <strong style="color:#16273b; letter-spacing:.04em;">BLUESALON10</strong> at checkout.</p>
+            <div style="display:flex; gap:12px;">
+              <a href="#" style="display:flex; align-items:center; gap:9px; background:#11151b; color:#fff; text-decoration:none; padding:9px 15px; border-radius:6px;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l13 9-13 9V3z"></path></svg>
+                <span style="display:flex; flex-direction:column; line-height:1.1;"><span style="font-size:7.5px; letter-spacing:.08em; opacity:.8;">GET IT ON</span><span style="font-size:12px; font-weight:500;">Google Play</span></span>
+              </a>
+              <a href="#" style="display:flex; align-items:center; gap:9px; background:#11151b; color:#fff; text-decoration:none; padding:9px 15px; border-radius:6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.7 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.5 5.2c.6-.8 1-1.8.9-2.9-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-.9 2.8 1 0 2-.6 2.6-1.3z"></path></svg>
+                <span style="display:flex; flex-direction:column; line-height:1.1;"><span style="font-size:7.5px; letter-spacing:.08em; opacity:.8;">DOWNLOAD ON THE</span><span style="font-size:12px; font-weight:500;">App Store</span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section data-screen-label="Newsletter" style="max-width:1280px; margin:0 auto; padding:90px 40px;">
+      <div style="border-top:1px solid #ece9e3; border-bottom:1px solid #ece9e3; padding:54px 0; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+        <div>
+          <h2 class="bs-serif" style="font-weight:400; font-size:34px; color:#16273b; margin:0;">Stay in the <span style="font-style:italic;">Loop</span></h2>
+          <p style="font-size:14px; color:#8a93a0; margin:14px 0 0;">Be the first to know about new arrivals, exclusive events, and curated edits.</p>
+        </div>
+        <div>
+          <sc-if value="{{ subscribed }}">
+            <p style="font-size:15px; color:#1f8a5b; margin:0;">Thank you — you're on the list.</p>
+          </sc-if>
+          <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex; gap:0; border:1px solid #d8d2c6;">
+              <input type="email" placeholder="Enter email address" style="flex:1; border:0; background:transparent; outline:none; font-family:inherit; font-size:13.5px; color:#16273b; padding:16px 18px;">
+              <button onClick="{{ subscribe }}" style="background:#003976; color:#fff; border:0; cursor:pointer; font-family:inherit; font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:0 30px; transition:background .3s ease;" style-hover="background:#002a57;">Subscribe</button>
+            </div>
+            <p style="font-size:11px; color:#a7b0bb; margin:12px 0 0;">By subscribing you agree to our <a href="#" style="color:#586473;">Privacy Policy</a>. Unsubscribe anytime.</p>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="background:#ffffff;">
+    <div style="max-width:1280px; margin:0 auto; padding:24px 40px 64px;">
+      <div style="display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:48px;">
+        <div>
+          <img src="assets/logo-horizontal.svg" alt="Blue Salon" style="height:26px; width:auto; display:block;">
+          <p style="font-size:13px; line-height:1.7; color:#8a93a0; margin:22px 0 0; max-width:260px;">Qatar's premier destination for luxury fashion, beauty, jewellery and lifestyle — curating the world's finest since 1984.</p>
+          <div style="display:flex; gap:14px; margin-top:24px;">
+            <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+              <a href="#" aria-label="{{ s }}" style="width:34px; height:34px; border:1px solid #e2ddd3; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#586473; font-size:10px; letter-spacing:.02em; text-decoration:none;">{{ s }}</a>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:9px; margin-top:24px;">
+            <sc-for list="{{ payments }}" as="pm" hint-placeholder-count="4">
+              <span style="border:1px solid #e2ddd3; border-radius:3px; padding:5px 9px; font-size:9px; letter-spacing:.06em; color:#7c8794;">{{ pm }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+          <div>
+            <h4 style="font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:#16273b; margin:6px 0 22px; font-weight:600;">{{ col.title }}</h4>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px;">
+              <sc-for list="{{ col.links }}" as="link" hint-placeholder-count="6">
+                <li><a href="#" style="font-size:13px; color:#8a93a0; text-decoration:none; transition:color .3s ease;" style-hover="color:#003976;">{{ link }}</a></li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#002a57;">
+      <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:52px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <span style="font-size:11px; color:rgba(255,255,255,.6);">© 2026 Blue Salon · AbuIssa Holding. All rights reserved.</span>
+        <div style="display:flex; gap:26px;">
+          <sc-for list="{{ legal }}" as="l" hint-placeholder-count="4">
+            <a href="#" style="font-size:11px; color:rgba(255,255,255,.6); text-decoration:none;">{{ l }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- scroll to top -->
+  <button onClick="{{ scrollTop }}" aria-label="Back to top" style="position:fixed; right:26px; bottom:26px; z-index:80; width:42px; height:42px; border-radius:50%; border:1px solid rgba(0,42,87,.2); background:#fff; box-shadow:0 8px 22px rgba(0,42,87,.14); cursor:pointer; display:flex; align-items:center; justify-content:center; color:#003976;" style-hover="background:#003976; color:#fff;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>
+  </button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { slide: 0, searchOpen: false, subscribed: false, openMenu: null };
+
+  componentDidMount() {
+    this._t = setInterval(() => {
+      this.setState((s) => ({ slide: (s.slide + 1) % 3 }));
+    }, 7000);
+    this._onKey = (e) => { if (e.key === 'Escape') this.setState({ searchOpen: false, openMenu: null }); };
+    document.addEventListener('keydown', this._onKey);
+  }
+  componentWillUnmount() {
+    clearInterval(this._t);
+    document.removeEventListener('keydown', this._onKey);
+  }
+  _go(i) { clearInterval(this._t); this.setState({ slide: ((i % 3) + 3) % 3 }); }
+
+  renderVals() {
+    const slide = this.state.slide;
+
+    const slides = [
+      { eyebrow: 'Fine Jewellery',   title: 'Crafted for\nthe\nExtraordinary', cta: 'Discover Jewellery' },
+      { eyebrow: "The Women's Edit", title: 'Defined by\nQuiet\nConfidence',   cta: 'Shop Women' },
+      { eyebrow: 'New Season 2026',  title: 'The Arrivals\nYou Have\nAwaited',  cta: 'Explore New In' },
+    ];
+    const cur = slides[slide];
+
+    const seg = (i) => {
+      const active = i === slide;
+      return 'width:' + (active ? '34px' : '20px') + ';height:2px;border:0;padding:0;cursor:pointer;border-radius:2px;'
+        + 'background:' + (active ? '#16273b' : 'rgba(22,39,59,.28)') + ';transition:width .4s ease, background .4s ease;';
+    };
+
+    const ic = (svg) => ({ __html: svg });
+    const trust = [
+      { title: 'Premium Quality',       desc: 'Finest luxury materials',  icon: ic('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 20s-7-4.6-9.2-9C1.3 8.1 2.6 5 5.7 5 7.8 5 9 6.3 12 9c3-2.7 4.2-4 6.3-4 3.1 0 4.4 3.1 2.9 6-2.2 4.4-9.2 9-9.2 9z"></path></svg>') },
+      { title: 'Timeless Style',        desc: 'Designed to inspire',      icon: ic('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"></path></svg>') },
+      { title: 'Complimentary Shipping',desc: 'On orders over QAR 500',   icon: ic('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 7h11v8H3z"></path><path d="M14 10h4l3 3v2h-7z"></path><circle cx="7" cy="17" r="1.6"></circle><circle cx="17.5" cy="17" r="1.6"></circle></svg>') },
+      { title: 'Secure Payment',        desc: '100% protected',           icon: ic('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="5" y="10" width="14" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>') },
+    ];
+
+    const arrivals = [
+      { slotId: 'arr-1', name: 'Miriam Pump',  price: 'QAR 5,700', swatches: ['#bcae9a', '#3a3a3a', '#7a5230'], extra: '+1', tone: '#f4f3f1' },
+      { slotId: 'arr-2', name: 'Miriam Pump',  price: 'QAR 4,500', swatches: ['#2a2a2a', '#8a98a6', '#c9bfa8'], extra: '+1', tone: '#f4f3f1' },
+      { slotId: 'arr-3', name: 'Marlene Pump', price: 'QAR 4,100', swatches: ['#cdb98f', '#1f1f1f', '#6b6b6b'], extra: '',   tone: '#f4f3f1' },
+    ];
+
+    const trending = [
+      { slotId: 'trd-1', name: 'Love Diamond Necklace', price: 'QAR 18,500', swatches: ['#caa96a', '#b08d57', '#3a3a3a'], extra: '',   tone: '#f1f1ef' },
+      { slotId: 'trd-2', name: 'Aventus Eau de Parfum', price: 'QAR 1,350',  swatches: ['#1f1f1f'],                       extra: '',   tone: '#f1f1ef' },
+      { slotId: 'trd-3', name: 'Magic Cream Moisturiser', price: 'QAR 465',  swatches: ['#e7d3c4', '#d9b8a0'],            extra: '+2', tone: '#f1f1ef' },
+    ];
+
+    const sr = "font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;";
+    const ss = 'font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;';
+    const brands = [
+      { name: 'Valentino',        style: sr + 'font-weight:400;' },
+      { name: 'Versace',          style: sr + 'font-weight:500;letter-spacing:.04em;' },
+      { name: 'Prada',            style: sr + 'font-style:italic;font-weight:400;' },
+      { name: 'JIMMY CHOO',       style: ss },
+      { name: 'Cartier',          style: sr + 'font-weight:400;letter-spacing:.06em;' },
+      { name: 'Bottega Veneta',   style: sr + 'font-style:italic;font-weight:400;' },
+      { name: 'STELLA McCARTNEY', style: ss },
+      { name: 'Charlotte Tilbury',style: sr + 'font-weight:400;' },
+    ];
+
+    const footerCols = [
+      { title: 'Customer Care', links: ['Contact Us', 'Size Guide', 'Delivery & Shipping', 'Returns & Exchanges', 'Track Your Order', 'FAQs'] },
+      { title: 'Services',      links: ['Personal Shopping', 'Gift Cards', 'Luxury Gift Wrapping', 'Loyalty Programme', 'Alterations & Tailoring', 'Concierge'] },
+      { title: 'Blue Salon',    links: ['About Us', 'Our Story', 'Careers', 'Press & Media', 'Sustainability', 'Corporate Gifting'] },
+    ];
+
+    const navData = [
+      { key:'new-in', label:'New In', color:'#16273b',
+        columns:[
+          {title:'Discover', links:['This Week','Back in Stock','Trending Now','The Blue Salon Edit']},
+          {title:'Shop New', links:['Women','Men','Beauty','Jewellery','Bags & Accessories']},
+          {title:'Designers', links:['New Arrivals','Emerging Houses','Exclusives']},
+        ], feat:{eyebrow:'Just In', title:'The 2026 Collections', cta:'Shop new in', tone:'#efe7da', ctaColor:'#16273b'} },
+      { key:'women', label:'Women', color:'#16273b',
+        columns:[
+          {title:'Clothing', links:['Dresses','Knitwear','Coats & Jackets','Tailoring','Tops']},
+          {title:'Bags', links:['Totes','Shoulder Bags','Clutches','Mini Bags']},
+          {title:'Shoes', links:['Heels','Flats','Sneakers','Boots']},
+          {title:'Accessories', links:['Fine Jewellery','Sunglasses','Scarves','Belts']},
+        ], feat:{eyebrow:'Featured', title:'The Summer Edit', cta:'Discover', tone:'#e9dfd0', ctaColor:'#16273b'} },
+      { key:'men', label:'Men', color:'#16273b',
+        columns:[
+          {title:'Clothing', links:['Shirts','Knitwear','Tailoring','Outerwear','Trousers']},
+          {title:'Shoes', links:['Loafers','Sneakers','Boots','Formal']},
+          {title:'Accessories', links:['Bags','Belts','Watches','Sunglasses']},
+          {title:'Grooming', links:['Fragrance','Skincare','Shaving']},
+        ], feat:{eyebrow:'Featured', title:'Modern Tailoring', cta:'Discover', tone:'#dcd3c4', ctaColor:'#16273b'} },
+      { key:'beauty', label:'Beauty', color:'#16273b',
+        columns:[
+          {title:'Skincare', links:['Moisturisers','Serums','Cleansers','Masks']},
+          {title:'Makeup', links:['Face','Eyes','Lips','Tools']},
+          {title:'Fragrance', links:['Women','Men','Home','Discovery Sets']},
+          {title:'Hair & Body', links:['Hair Care','Bath & Body','Wellness']},
+        ], feat:{eyebrow:'New', title:'The Fragrance Wardrobe', cta:'Explore', tone:'#efe6d8', ctaColor:'#16273b'} },
+      { key:'jewellery', label:'Jewellery', color:'#16273b',
+        columns:[
+          {title:'Categories', links:['Necklaces','Rings','Bracelets','Earrings']},
+          {title:'Collections', links:['Fine Jewellery','High Jewellery','Bridal','Diamonds']},
+          {title:'Watches', links:['Women','Men','New Arrivals','Pre-Owned']},
+        ], feat:{eyebrow:'Iconic', title:'High Jewellery', cta:'Discover', tone:'#e8d8c2', ctaColor:'#16273b'} },
+      { key:'kids', label:'Kids', color:'#16273b',
+        columns:[
+          {title:'Baby', links:['0\u201312 Months','Clothing','Gifts','Nursery']},
+          {title:'Girls', links:['Clothing','Shoes','Accessories']},
+          {title:'Boys', links:['Clothing','Shoes','Accessories']},
+          {title:'More', links:['Toys','Books','Gift Sets']},
+        ], feat:{eyebrow:'Gifting', title:'Little Luxuries', cta:'Shop kids', tone:'#e4ebe6', ctaColor:'#16273b'} },
+      { key:'brands', label:'Brands', color:'#16273b',
+        columns:[
+          {title:'Featured', links:['Valentino','Saint Laurent','Loro Piana','Cartier']},
+          {title:'Trending', links:['Bottega Veneta','Prada','Jimmy Choo','Messika']},
+          {title:'Explore', links:['All Brands A\u2013Z','New Designers','Exclusives','The Houses']},
+        ], feat:{eyebrow:'Our Portfolio', title:'500+ Luxury Houses', cta:'View all brands', tone:'#eae3d6', ctaColor:'#16273b'} },
+      { key:'sale', label:'Sale', color:'#c0392f',
+        columns:[
+          {title:'Shop Sale', links:['Women','Men','Beauty','Jewellery']},
+          {title:'By Category', links:['Clothing','Bags','Shoes','Accessories']},
+          {title:'Offers', links:['Final Reductions','Last Chance','Private Sale']},
+        ], feat:{eyebrow:'Private Sale', title:'Up to 40% off', cta:'Shop the sale', tone:'#f3e4e2', ctaColor:'#c0392f'} },
+    ];
+    const navItems = navData.map((n) => ({ key:n.key, label:n.label, color:n.color, enter: () => this.setState({ openMenu: n.key }) }));
+    const openMenu = this.state.openMenu;
+    const curMenu = navData.find((n) => n.key === openMenu) || { columns: [], feat: {} };
+
+    return {
+      heroEyebrow: cur.eyebrow,
+      heroTitle: cur.title,
+      heroCta: cur.cta,
+      heroIndicator: String(slide + 1).padStart(2, '0') + ' / 03',
+      seg0: seg(0), seg1: seg(1), seg2: seg(2),
+      prev: () => this._go(slide - 1),
+      next: () => this._go(slide + 1),
+      d0: () => this._go(0), d1: () => this._go(1), d2: () => this._go(2),
+      searchOpen: this.state.searchOpen,
+      openSearch: () => this.setState({ searchOpen: true, openMenu: null }),
+      closeSearch: () => this.setState({ searchOpen: false }),
+      topSearches: ['Rolex', 'Cartier Love bracelet', 'Loro Piana', 'Diptyque', 'Gifts for her'],
+      navItems, megaOpen: !!openMenu, mega: curMenu, closeMega: () => this.setState({ openMenu: null }),
+      trust, arrivals, trending, brands, footerCols,
+      subscribed: this.state.subscribed,
+      notSubscribed: !this.state.subscribed,
+      subscribe: () => this.setState({ subscribed: true }),
+      socials: ['IG', 'TT', 'FB', 'YT'],
+      payments: ['VISA', 'MC', 'AMEX', 'PayPal'],
+      legal: ['Privacy Policy', 'Terms of Use', 'Cookie Policy', 'Sitemap'],
+      scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

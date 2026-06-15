@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIVA — Navy &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#003876;
+  --deep:#08284A;
+  --warm:#F7F2EA;
+  --champagne:#F3EBDD;
+  --text:#111111;
+  --lux-line:rgba(199,167,106,.18);
+  --navy:#003876;
+  --title-navy:#08284A;
+  --navy-mid:#152548;
+  --navy-deep:#080F22;
+  --gold:#C7A76A;
+  --gold-light:#D9C08D;
+  --gold-pale:#FBF8F2;
+  --ivory:#FBF8F2;
+  --cream:#F7F2EA;
+  --charcoal:#2C2C2C;
+  --muted:#666666;
+  --white:#fff;
+  --line:rgba(17,17,17,.08);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost",-apple-system,sans-serif;
+  --gut:clamp(20px,4vw,52px);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--charcoal);font-weight:300;font-size:14px;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.serif{font-family:var(--serif)}
+
+/* LUXURY DEPARTMENT HEADER */
+.lux-announcement{min-height:31px;background:var(--deep);border-bottom:1px solid rgba(199,167,106,.15);padding:6px var(--gut);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;color:rgba(255,255,255,.55);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.lux-announcement a{color:#fff;transition:color .25s ease}
+.lux-announcement a:hover{color:var(--gold)}
+.announce-center{color:var(--gold-light);text-align:center}
+.announce-locale{display:flex;justify-content:flex-end;align-items:center;gap:10px}
+.announce-locale .hairline{width:1px;height:11px;background:rgba(199,167,106,.35)}
+.lux-header{position:sticky;top:0;z-index:100;background:#fff;}
+.header-main{height:100px;padding:0 var(--gut);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid var(--lux-line)}
+.header-left{display:flex;align-items:center}
+.header-context{display:flex;align-items:center;font-weight:400;font-size:14px;color:var(--muted);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.header-context::before{content:"";width:26px;height:1px;background:var(--gold)}
+.header-logo{display:block;width:clamp(176px,16vw,228px)}
+.header-logo img{width:100%;height:auto}
+.header-actions{display:flex;justify-content:flex-end;align-items:center;gap:clamp(14px,1.7vw,26px)}
+.header-action{position:relative;display:flex;align-items:center;gap:7px;background:transparent;border:0;color:var(--text);font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color .25s ease}
+.header-action svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.35}
+.header-action:hover{color:var(--navy)}
+.bag-count{position:absolute;top:1px;left:11px;min-width:13px;height:13px;border-radius:50%;background:var(--navy);color:#fff;font-size:8px;line-height:13px;text-align:center;letter-spacing:0}
+.mobile-menu-button{display:none;background:transparent;border:0;color:var(--navy);width:34px;height:34px;cursor:pointer}
+.mobile-menu-button span{display:block;width:23px;height:1px;background:currentColor;margin:5px 0;transition:transform .3s ease,opacity .3s ease}
+.department-nav{position:relative;background:#fff;border-bottom:1px solid var(--lux-line)}
+.nav-list{height:52px;padding:0 var(--gut);display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.3vw,38px);list-style:none}
+.department-link{position:relative;display:flex;align-items:center;height:100%;color:var(--navy);font-size:13px;font-weight:400;text-transform:uppercase;white-space:nowrap;transition:color .25s ease}
+.department-link::after{content:"";position:absolute;left:50%;right:50%;bottom:-1px;height:1px;background:var(--navy);transition:left .3s ease,right .3s ease}
+.department-link:hover,.department-link:focus-visible{color:var(--deep)}
+.department-link:hover::after,.department-link:focus-visible::after{left:0;right:0}
+.department-link.sale{color:#9A4242}
+.mega-menu{position:absolute;top:100%;left:0;width:100%;background:#fff;border-bottom:1px solid var(--lux-line);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px);transition:opacity 420ms ease,transform 420ms ease,visibility 420ms;z-index:110}
+.nav-list:hover + .mega-menu,.department-nav:focus-within .mega-menu,.mega-menu:hover{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.mega-inner{padding:48px var(--gut) 40px;max-width:1600px;margin:0 auto;display:grid;grid-template-columns:minmax(150px,.7fr) minmax(190px,.9fr) minmax(600px,2.8fr);gap:clamp(36px,4.5vw,76px)}
+.mega-kicker{display:block;margin-bottom:20px;color:var(--navy);font-weight:0.46em;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.mega-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.mega-links a{color:var(--text);font-size:14px;line-height:1.15;transition:color .25s ease,transform .25s ease}
+.mega-links a:hover{color:var(--primary);transform:translateX(3px)}
+.mega-links.secondary a{font-family:var(--sans);font-size:13px;line-height:1.45;letter-spacing:.08em}
+.mega-note{margin-top:22px;padding-top:18px;border-top:1px solid var(--lux-line);color:var(--muted);font-size:10.5px;line-height:1.8;max-width:25ch}
+.mega-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,48px)}
+.mega-card{display:block;min-width:0}
+.mega-card-image{overflow:hidden;background:var(--champagne);aspect-ratio:1.28/1}
+.mega-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.mega-card:hover img{transform:scale(1.025)}
+.mega-card-copy{padding-top:16px;border-top:1px solid transparent}
+.mega-card-eyebrow{color:var(--gold);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase}
+.mega-card-title{margin:6px 0 7px;color:var(--deep);font-family:var(--serif);font-size:clamp(20px,1.8vw,28px);font-weight:400;line-height:1.05}
+.mega-card-cta{display:inline-flex;align-items:center;gap:10px;color:var(--text);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.mega-card-cta::after{content:"";width:28px;height:1px;background:var(--gold);transition:width .3s ease}
+.mega-card:hover .mega-card-cta{color:var(--primary)}
+.mega-card:hover .mega-card-cta::after{width:42px}
+.private-services{grid-column:1/-1;margin-top:28px;padding-top:0;min-height:48px;border-top:1px solid var(--lux-line);display:flex;align-items:center;justify-content:flex-start;gap:clamp(20px,4vw,60px);color:var(--muted);font-size:9px;letter-spacing:.15em;text-transform:uppercase}
+.private-services strong{color:var(--navy);font-weight:500}
+.private-services .service-dot{width:3px;height:3px;border-radius:50%;background:var(--gold)}
+
+/* HERO BASE */
+.hero-variant{display:none}
+.hero-variant.show{display:block;animation:fade .6s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.eyebrow{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.btn-primary{background:var(--navy);color:var(--white);padding:14px 34px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;transition:.2s;display:inline-block}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-ghost{background:nav;color:#fff;padding:14px 34px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #fff;cursor:pointer;transition:.2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(199,167,106,.08)}
+.btn-ghost.dark{color:var(--navy);
+  font-weight:500;
+  border-color:rgba(13,27,62,.3)}
+.btn-ghost.dark:hover{border-color:var(--navy);color:var(--navy);background:rgba(13,27,62,.04)}
+
+/* HERO 1 — ATELIER SPLIT */
+.h1wrap{background:var(--ivory);display:grid;grid-template-columns:1fr 1.05fr;min-height:min(88vh,800px)}
+.h1-left{padding:clamp(48px,6vw,90px) clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;position:relative}
+.h1-meta{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.h1-meta .rule{height:1px;width:54px;background:var(--gold)}
+.h1-meta .ix{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--gold)}
+.h1-title{font-family:var(--serif);font-size:clamp(48px,6.6vw,88px);font-weight:300;line-height:.96;color:var(--title-navy);letter-spacing:.01em}
+.h1-title em{color:var(--gold);font-style:italic}
+.h1-sub{font-size:13.5px;letter-spacing:.04em;color:var(--muted);margin:26px 0 40px;line-height:1.9;max-width:38ch}
+.h1-cta{display:flex;gap:14px;flex-wrap:wrap}
+.h1-cta .btn-ghost{color:var(--navy);border-color:rgba(13,27,62,.3)}
+.h1-cta .btn-ghost:hover{border-color:var(--navy);background:rgba(13,27,62,.04)}
+.h1-right{position:relative;overflow:hidden;background:#E8E3DC}
+.h1-right img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.h1-badge{position:absolute;bottom:36px;left:-1px;background:rgba(8,40,74,.88);color:var(--gold-light);padding:15px 26px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.h1-badge b{display:block;font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:.04em;margin-top:3px}
+
+/* HERO 2 — CINEMATIC FULL-BLEED */
+.h2wrap{position:relative;height:min(82vh,720px);min-height:520px;overflow:hidden;display:flex;align-items:center}
+.h2wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.h2wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,27,62,.86) 0%,rgba(13,27,62,.5) 45%,rgba(13,27,62,.12) 100%)}
+.h2-c{position:relative;z-index:2;padding:0 clamp(32px,6vw,96px);max-width:680px}
+.h2-c .eyebrow{margin-bottom:20px}
+.h2-title{font-family:var(--serif);font-size:clamp(50px,8vw,118px);font-weight:300;line-height:.96;color:#fff;letter-spacing:.01em}
+.h2-title em{color:var(--gold-light);font-style:italic}
+.h2-sub{font-size:14px;letter-spacing:.04em;color:rgba(255,255,255,.72);margin:24px 0 36px;line-height:1.8;max-width:42ch}
+.h2-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* HERO 3 — FRAMED GALLERY */
+.h3wrap{background:var(--ivory);padding:clamp(56px,7vw,96px) var(--gut) clamp(64px,7vw,104px);text-align:center}
+.h3-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0 8px}
+.h3-orn .r{height:1px;width:54px;background:var(--gold)}
+.h3-orn .d{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.h3-title{font-family:var(--serif);font-size:clamp(44px,6.4vw,96px);font-weight:300;line-height:1;color:var(--title-navy);letter-spacing:.02em;margin-top:6px}
+.h3-title em{color:var(--gold);font-style:italic}
+.h3-sub{font-size:13.5px;letter-spacing:.05em;color:var(--muted);margin:22px auto 34px;line-height:1.9;max-width:52ch}
+.h3-frame{position:relative;max-width:1080px;margin:0 auto;padding:14px;border:1px solid var(--lux-line)}
+.h3-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(199,167,106,.12);pointer-events:none;z-index:3}
+.h3-frame .imgbox{position:relative;overflow:hidden;height:clamp(300px,44vw,500px)}
+.h3-frame img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.h3-frame .cap{position:absolute;left:24px;bottom:24px;z-index:2;background:rgba(8,40,74,.82);backdrop-filter:blur(4px);color:var(--gold-light);padding:12px 22px;font-family:var(--serif);font-style:italic;font-size:18px}
+.h3-cta{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.h3-cta .btn-ghost{color:var(--navy);border-color:rgba(13,27,62,.3)}
+.h3-cta .btn-ghost:hover{border-color:var(--navy);background:rgba(13,27,62,.04)}
+
+/* HERO 4 — REVERSED EDITORIAL */
+.h4wrap{display:grid;grid-template-columns:1.15fr .85fr;min-height:min(88vh,800px)}
+.h4-img{position:relative;overflow:hidden;background:#E8E3DC}
+.h4-img img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.h4-tag{position:absolute;top:26px;left:26px;background:rgba(8,40,74,.85);color:var(--gold-light);padding:9px 16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.h4-txt{padding:clamp(48px,6vw,96px) clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;position:relative}
+.h4-ix{position:absolute;top:clamp(30px,4vw,56px);right:clamp(30px,4vw,56px);font-family:var(--serif);font-style:italic;font-size:72px;color:rgba(199,167,106,.35);line-height:1}
+.h4-txt .eyebrow{margin-bottom:24px}
+.h4-title{font-family:var(--serif);font-size:clamp(48px,6vw,90px);font-weight:300;line-height:.96;color:var(--title-navy);letter-spacing:.01em}
+.h4-title em{color:var(--gold);font-style:italic}
+.h4-sub{font-size:13.5px;letter-spacing:.04em;color:var(--muted);margin:26px 0 40px;line-height:1.9;max-width:38ch}
+.h4-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.h4-cta .btn-ghost{color:var(--navy);border-color:rgba(13,27,62,.3)}
+.h4-cta .btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+
+/* SECTION HEADER */
+.sec-head{text-align:center;padding:clamp(88px,9vw,120px) var(--gut) clamp(36px,4vw,48px)}
+.sec-head .eyebrow{display:block;margin-bottom:13px}
+.sec-title{font-family:var(--serif);font-size:clamp(32px,4vw,46px);font-weight:300;color:var(--title-navy);letter-spacing:.02em}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-rule{width:42px;height:1px;background:var(--gold);margin:16px auto 0}
+
+/* PRODUCT GRID */
+.product-section{padding:0 var(--gut) clamp(88px,9vw,120px)}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px)}
+
+/* PRODUCT CARD */
+.pcard{background:transparent;cursor:pointer;position:relative}
+.pcard:hover .quick-add,.pcard:focus-within .quick-add{opacity:1}
+.pcard:hover .card-img img{transform:scale(1.03)}
+.card-img{overflow:hidden;position:relative;background:var(--ivory);aspect-ratio:3/4}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 600ms ease}
+.card-badge{position:absolute;top:13px;left:13px;background:#fff;border:1px solid rgba(0,56,118,.15);color:var(--primary);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;z-index:2}
+.card-badge.sale{background:#fff;color:#8A3F3F;border-color:rgba(138,63,63,.18)}
+.card-wishlist{position:absolute;top:11px;right:11px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.94);border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .2s ease,background .2s ease;z-index:3}
+.card-wishlist:hover{background:#fff}
+.card-wishlist svg{width:13px;height:13px;stroke:var(--primary);fill:none;stroke-width:1.45;transition:fill .2s ease}
+.card-wishlist.active{background:#fff}
+.card-wishlist.active svg{stroke:var(--primary);fill:var(--primary)}
+.quick-add{position:absolute;left:16px;right:16px;bottom:16px;height:42px;background:var(--primary);border:0;color:#fff;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:0;transition:opacity 360ms ease;z-index:3}
+.quick-add:hover{background:var(--deep)}
+.card-body{padding:17px 0 2px}
+.card-brand{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card-name{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--title-navy);margin-bottom:9px;line-height:1.25}
+.card-swatches{display:flex;gap:8px;align-items:center;margin-top:13px}
+.swatch{width:14px;height:14px;border-radius:50%;cursor:pointer;border:1px solid rgba(17,17,17,.08);transition:box-shadow .15s,border-color .15s}
+.swatch.active{border-color:rgba(17,17,17,.08);box-shadow:0 0 0 2px #FFF,0 0 0 3px var(--primary)}
+.swatch:hover{border-color:var(--primary)}
+.swatch-count{font-size:10px;color:var(--muted);letter-spacing:.04em;margin-left:2px}
+.card-price-row{display:flex;align-items:center;margin:10px 0;gap:10px}
+.card-price{font-size:14px;font-weight:500;color:var(--navy);letter-spacing:.04em}
+.card-price-was{font-size:12px;color:var(--muted);text-decoration:line-through}
+.card-price-save{font-size:10px;color:var(--gold);letter-spacing:.06em;font-weight:500}
+.sec-more{text-align:center;margin-top:42px}
+
+/* EDITORIAL SPLIT */
+.editorial{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(380px,42vw,500px)}
+.ed-panel{position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(34px,4vw,56px)}
+.ed-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.ed-panel:hover img{transform:scale(1.05)}
+.ed-panel.navy::after,.ed-panel.cream::after{content:"";position:absolute;inset:0;background:rgba(8,40,74,.25)}
+.ed-content{position:relative;z-index:2;max-width:80%}
+.ed-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+.ed-title{font-family:var(--serif);font-size:clamp(30px,3.6vw,46px);font-weight:300;line-height:1.06;margin-bottom:16px;color:#fff}
+.ed-sub{font-size:12.5px;letter-spacing:.04em;line-height:1.8;margin-bottom:24px;color:rgba(255,255,255,.85);max-width:34ch}
+
+/* DEPARTMENT SHOWCASE */
+.department-showcase{padding:0 var(--gut) clamp(88px,9vw,120px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(14px,1.7vw,24px)}
+.dept-card{position:relative;overflow:hidden;display:flex;align-items:flex-end;background:var(--warm);min-height:300px}
+.dept-card.featured{grid-column:span 6;min-height:460px}
+.dept-card.standard{grid-column:span 3}
+.dept-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 800ms ease}
+.dept-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,74,0) 38%,rgba(8,40,74,.62) 100%)}
+.dept-card:hover img{transform:scale(1.025)}
+.dept-copy{position:relative;z-index:2;width:100%;padding:clamp(22px,2.5vw,36px);color:#fff}
+.dept-eyebrow{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:8px}
+.dept-title{font-family:var(--serif);font-size:clamp(25px,2.5vw,38px);font-weight:400;line-height:1.04}
+.dept-card.standard .dept-title{font-size:clamp(22px,2vw,30px)}
+.dept-cta{display:inline-flex;align-items:center;gap:11px;margin-top:13px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;}
+.dept-cta::after{content:"";width:28px;height:1px;background:var(--gold);transition:width .3s ease}
+.dept-card:hover .dept-cta::after{width:43px}
+
+/* NEWSLETTER */
+.newsletter{padding:clamp(76px,8vw,104px) var(--gut);text-align:center}
+.newsletter .eyebrow{margin-bottom:16px;display:block}
+.nl-title{font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);font-weight:300;color:var(--title-navy);margin-bottom:12px}
+.nl-title em{color:var(--gold);font-style:italic}
+.nl-sub{font-size:12.5px;letter-spacing:.05em;color:var(--muted);margin-bottom:34px;line-height:1.8;max-width:46ch;margin-left:auto;margin-right:auto}
+.nl-form{display:flex;max-width:470px;margin:0 auto}
+.nl-form input{flex:1;background:var(--white);border:1px solid rgba(199,167,106,.3);border-right:none;color:var(--text);padding:15px 20px;font-family:var(--sans);font-size:12px;letter-spacing:.06em;outline:none}
+.nl-form input::placeholder{color:#8A8A8A}
+.nl-form input:focus{border-color:var(--gold)}
+.nl-form button{background:var(--navy);color:var(--white);border:none;padding:15px 30px;font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:.2s}
+.nl-form button:hover{background:var(--title-navy)}
+
+/* FOOTER */
+footer{background:var(--ivory);border-top:1px solid rgba(199,167,106,.15);padding:clamp(54px,6vw,76px) var(--gut) 30px;color:var(--muted)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px}
+.footer-brand{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--navy);letter-spacing:.2em;margin-bottom:16px}
+.footer-desc{font-size:12px;line-height:1.9;color:var(--muted);max-width:240px}
+.footer-social{display:flex;gap:14px;margin-top:22px}
+.footer-social svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.5;cursor:pointer;transition:stroke .2s}
+.footer-social svg:hover{stroke:var(--navy)}
+.footer-col-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(199,167,106,.2)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{position:relative;display:flex;align-items:center;height:100%;color:var(--navy);font-size:13px;font-weight:400;text-transform:uppercase;white-space:nowrap;transition:color .25s ease}
+.footer-links a:hover{color:var(--navy)}
+.footer-bottom{border-top:1px solid rgba(199,167,106,.15);padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.footer-lang{display:flex;gap:8px}
+.lang-btn{background:transparent;border:1px solid rgba(199,167,106,.3);color:var(--muted);padding:6px 14px;font-family:var(--sans);font-size:10px;letter-spacing:.1em;cursor:pointer;transition:.2s}
+.lang-btn.active,.lang-btn:hover{border-color:var(--navy);color:var(--navy)}
+
+/* page switcher */
+.pageswitch{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;display:flex;color:var(--navy-deep);gap:4px;backdrop-filter:blur(8px);padding:6px;border:1px solid rgba(199,167,106,.25);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.pageswitch a,.pageswitch button{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 13px;transition:.2s;white-space:nowrap;background:transparent;border:none;cursor:pointer;font-family:var(--sans)}
+.pageswitch a:hover,.pageswitch button:hover{color:var(--navy-deep)}
+.pageswitch a.on,.pageswitch button.on{background:var(--gold);color:var(--navy)}
+
+@media(max-width:1200px){
+  .header-action .action-label{display:none}
+  .header-actions{gap:20px}
+  .mega-inner{grid-template-columns:minmax(140px,.65fr) minmax(180px,.8fr) minmax(510px,2.4fr);gap:34px}
+}
+@media(max-width:1000px){
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .dept-card.featured,.dept-card.standard{grid-column:span 6}
+  .dept-card.featured{min-height:400px}
+  .dept-card.standard{min-height:320px}
+}
+@media(max-width:1100px){
+  .lux-announcement{grid-template-columns:1fr auto}
+  .announce-center{display:none}
+  .header-main{height:70px}
+  .header-context{display:none}
+  .mobile-menu-button{display:block}
+  .header-logo{width:176px}
+  .desktop-action{display:none}
+  .department-nav{max-height:0;overflow:hidden;border-bottom:0;transition:max-height 420ms ease}
+  .lux-header.mobile-open .department-nav{max-height:620px;border-bottom:1px solid var(--lux-line)}
+  .lux-header.mobile-open .mobile-menu-button span:first-child{transform:translateY(6px) rotate(45deg)}
+  .lux-header.mobile-open .mobile-menu-button span:nth-child(2){opacity:0}
+  .lux-header.mobile-open .mobile-menu-button span:last-child{transform:translateY(-6px) rotate(-45deg)}
+  .nav-list{height:auto;padding:18px var(--gut) 22px;display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px}
+  .department-link{height:42px;border-bottom:1px solid rgba(199,167,106,.18)}
+  .department-link::after{display:none}
+  .mega-menu{display:none}
+}
+@media(max-width:820px){
+  .h1wrap,.h4wrap{grid-template-columns:1fr}
+  .h1-right,.h4-img{min-height:54vh;order:-1}
+  .editorial{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-top>div:first-child{grid-column:1/-1}
+}
+@media(max-width:560px){
+  .lux-announcement{padding-left:18px;padding-right:18px;font-size:8.5px;letter-spacing:.1em}
+  .announce-locale{gap:7px}
+  .header-main{padding:0 18px}
+  .header-logo{width:148px}
+  .header-actions{gap:14px}
+  .header-action{padding:7px 0}
+  .nav-list{padding-left:18px;padding-right:18px;gap:0 20px}
+  .department-showcase{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-left:18px;padding-right:18px;scrollbar-width:none}
+  .department-showcase::-webkit-scrollbar{display:none}
+  .dept-card.featured,.dept-card.standard{flex:0 0 82vw;min-height:430px;scroll-snap-align:start}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .pageswitch{bottom:10px}
+  .pageswitch a{padding:8px 9px}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="lux-announcement">
+  <a href="#">Complimentary delivery across Qatar</a>
+  <a class="announce-center" href="#">Private appointments available</a>
+  <div class="announce-locale">
+    <a href="#">Qatar / QAR</a>
+    <span class="hairline"></span>
+    <a href="#">English</a>
+  </div>
+</div>
+
+<!-- LUXURY DEPARTMENT HEADER -->
+<header class="lux-header" id="luxury-header">
+  <div class="header-main">
+    <div class="header-left">
+      <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="department-menu" aria-label="Open departments">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header-context">Since 1981 · Doha</div>
+    </div>
+
+    <a class="header-logo" href="#" aria-label="Blue Salon home">
+      <img src="assets/logo-horizontal.svg" alt="Blue Salon">
+    </a>
+
+    <div class="header-actions">
+      <button class="header-action" type="button" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><line x1="16" y1="16" x2="21" y2="21"/></svg>
+        <span class="action-label">Search</span>
+      </button>
+      <a class="header-action desktop-action" href="#" aria-label="Account">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20c.7-4 3-6 6.5-6s5.8 2 6.5 6"/></svg>
+        <span class="action-label">Account</span>
+      </a>
+      <a class="header-action desktop-action" href="#" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.6a4.8 4.8 0 0 0-6.8 0L12 7.1l-1.5-1.5a4.8 4.8 0 1 0-6.8 6.8L12 20.7l8.3-8.3a4.8 4.8 0 0 0 0-6.8Z"/></svg>
+        <span class="action-label">Wishlist</span>
+      </a>
+      <a class="header-action" href="#" aria-label="Bag, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5h14l-1 12H6l-1-12Z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg>
+        <span class="bag-count">0</span>
+        <!-- <span class="action-label">Bag</span> -->
+      </a>
+    </div>
+  </div>
+
+  <nav class="department-nav" aria-label="Departments">
+    <ul class="nav-list" id="department-menu">
+      <li><a class="department-link" href="#">New In</a></li>
+      <li><a class="department-link" href="#">Women</a></li>
+      <li><a class="department-link" href="#">Men</a></li>
+      <li><a class="department-link" href="#">Beauty</a></li>
+      <li><a class="department-link" href="#">Jewelry</a></li>
+      <li><a class="department-link" href="#">Watches</a></li>
+      <li><a class="department-link" href="#">Bags</a></li>
+      <li><a class="department-link" href="#">Home</a></li>
+      <li><a class="department-link" href="#">Kids</a></li>
+      <li><a class="department-link" href="#">Gifts</a></li>
+      <li><a class="department-link sale" href="#">Sale</a></li>
+    </ul>
+
+    <div class="mega-menu">
+      <div class="mega-inner">
+        <div>
+          <span class="mega-kicker">Departments</span>
+          <ul class="mega-links">
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">Jewelry &amp; Watches</a></li>
+            <li><a href="#">Home &amp; Living</a></li>
+            <li><a href="#">The Gift Room</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="mega-kicker">Curated Edits</span>
+          <ul class="mega-links secondary">
+            <li><a href="#">New Season Signatures</a></li>
+            <li><a href="#">The Quiet Luxury Edit</a></li>
+            <li><a href="#">Occasion Dressing</a></li>
+            <li><a href="#">Collectors' Timepieces</a></li>
+            <li><a href="#">Beauty Icons</a></li>
+            <li><a href="#">The Blue Salon Selection</a></li>
+          </ul>
+          <p class="mega-note">A considered selection from the world's most distinguished houses, chosen for life in Doha.</p>
+        </div>
+
+        <div class="mega-cards">
+          <a class="mega-card" href="#">
+            <div class="mega-card-image"><img src="assets/fashion-header.jpg" alt="The Resort Edit" style="object-position:center 20%"></div>
+            <div class="mega-card-copy">
+              <div class="mega-card-eyebrow">The seasonal story</div>
+              <h3 class="mega-card-title">The Resort Edit</h3>
+              <span class="mega-card-cta">Discover the edit</span>
+            </div>
+          </a>
+          <a class="mega-card" href="#">
+            <div class="mega-card-image"><img src="assets/jewelry-header.jpg" alt="Timepieces and Jewelry" style="object-position:center center"></div>
+            <div class="mega-card-copy">
+              <div class="mega-card-eyebrow">Objects of distinction</div>
+              <h3 class="mega-card-title">Timepieces &amp; Jewelry</h3>
+              <span class="mega-card-cta">Explore the collection</span>
+            </div>
+          </a>
+          <a class="mega-card" href="#">
+            <div class="mega-card-image"><img src="assets/section-gifts.jpg" alt="Gifts for the Occasion"></div>
+            <div class="mega-card-copy">
+              <div class="mega-card-eyebrow">Thoughtfully selected</div>
+              <h3 class="mega-card-title">Gifts for the Occasion</h3>
+              <span class="mega-card-cta">Enter the gift room</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- <div class="private-services">
+          <strong>Private Services</strong>
+          <span class="service-dot"></span><span>Personal Shopper</span>
+          <span class="service-dot"></span><span>Gift Concierge</span>
+          <span class="service-dot"></span><span>Same-Day Delivery</span>
+          <span class="service-dot"></span><span>Authenticity Guaranteed</span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO 1 — ATELIER SPLIT -->
+<section class="hero-variant" data-hero="1">
+  <div class="h1wrap">
+    <div class="h1-left">
+      <div class="h1-meta"><span class="rule"></span><span class="ix">01 — Resort</span></div>
+      <h1 class="h1-title">The<br><em>Resort</em><br>Chapter</h1>
+      <p class="h1-sub">Sunkissed stories for the modern woman — where effortless dressing meets the art of living well.</p>
+      <div class="h1-cta"><a class="btn-primary" href="#">Shop the Edit</a><a class="btn-ghost" href="#">Explore Lookbook</a></div>
+    </div>
+    <div class="h1-right">
+      <img src="assets/fashion-header.jpg" alt="The Resort Chapter">
+      <div class="h1-badge">New Season<b>SS 2026</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO 2 — CINEMATIC -->
+<section class="hero-variant" data-hero="2">
+  <div class="h2wrap">
+    <img src="assets/stage-campaign.jpg" alt="The Resort Chapter">
+    <div class="h2-c">
+      <div class="eyebrow">SS 2026 · The New Collection</div>
+      <h1 class="h2-title">The <em>Resort</em><br>Chapter</h1>
+      <p class="h2-sub">An evening wardrobe built for light and leisure — from the Côte d'Azur to the Arabian Gulf.</p>
+      <div class="h2-cta"><a class="btn-primary" href="#">Shop the Edit</a><a class="btn-ghost" href="#">Watch the Film</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO 3 — FRAMED GALLERY -->
+<section class="hero-variant" data-hero="3">
+  <div class="h3wrap">
+    <div class="eyebrow">SS 2026 · The New Collection</div>
+    <div class="h3-orn"><span class="r"></span><span class="d"></span><span class="r"></span></div>
+    <h1 class="h3-title">The <em>Resort</em> Chapter</h1>
+    <p class="h3-sub">Sunkissed stories for the modern woman — effortless dressing, the art of living well.</p>
+    <div class="h3-frame">
+      <div class="imgbox"><img src="assets/fashion-header.jpg" alt="The Resort Chapter"><div class="cap">Resort Edit · SS 2026</div></div>
+    </div>
+    <div class="h3-cta"><a class="btn-primary" href="#">Shop the Edit</a><a class="btn-ghost" href="#">Explore Lookbook</a></div>
+  </div>
+</section>
+
+<!-- HERO 4 — REVERSED EDITORIAL -->
+<section class="hero-variant show" data-hero="4">
+  <div class="h4wrap">
+    <div class="h4-img">
+      <img src="assets/fashion-women.jpg" alt="The Resort Chapter">
+      <div class="h4-tag">Look 01 · The Edit</div>
+    </div>
+    <div class="h4-txt">
+      <span class="h4-ix">01</span>
+      <div class="eyebrow">SS 2026 · The New Collection</div>
+      <h1 class="h4-title">The <em>Resort</em><br>Chapter</h1>
+      <p class="h4-sub">A wardrobe of quiet confidence — fluid silhouettes, sun-warm neutrals and the pieces to carry them anywhere.</p>
+      <div class="h4-cta"><a class="btn-primary" href="#">Shop the Edit</a><a class="btn-ghost" href="#">Explore Lookbook</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<div class="sec-head">
+  <span class="eyebrow">Curated for you</span>
+  <h2 class="sec-title">Best <em>Sellers</em></h2>
+  <div class="sec-rule"></div>
+</div>
+<div class="product-section">
+  <div class="product-grid">
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/jewelry-header.jpg" alt="" style="object-position:center 32%">
+        <div class="card-badge">New</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <button class="quick-add" type="button">Quick Add</button>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Woman</div>
+        <div class="card-name">Silk Charmeuse Blouse</div>
+        <div class="card-price-row"><span class="card-price">$115.00</span></div>
+        <div class="card-swatches"><span class="swatch active" style="background:#FBF8F2" title="Ivory"></span><span class="swatch" style="background:#C7A76A" title="Camel"></span><span class="swatch" style="background:#0D1B3E" title="Navy"></span><span class="swatch-count">+2</span></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/fashion-bag.jpg" alt="" style="object-position:center center">
+        <div class="card-badge">Trending</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <button class="quick-add" type="button">Quick Add</button>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Accessories</div>
+        <div class="card-name">Carine Top-Handle Bag</div>
+        <div class="card-price-row"><span class="card-price">$240.00</span></div>
+        <div class="card-swatches"><span class="swatch active" style="background:#E4CBB0" title="Blush"></span><span class="swatch" style="background:#0D1B3E" title="Navy"></span><span class="swatch" style="background:#2C2C2C" title="Black"></span></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/fashion-shoes.jpg" alt="" style="object-position:center center">
+        <div class="card-badge sale">Sale</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <button class="quick-add" type="button">Quick Add</button>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Shoes</div>
+        <div class="card-name">Satin Slingback Pumps</div>
+        <div class="card-price-row"><span class="card-price">$130.00</span><span class="card-price-was">$165.00</span><span class="card-price-save">Save 21%</span></div>
+        <div class="card-swatches"><span class="swatch active" style="background:#D8C7A0" title="Champagne"></span><span class="swatch" style="background:#2C2C2C" title="Black"></span><span class="swatch" style="background:#7A2E3A" title="Bordeaux"></span></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/fashion-belt.jpg" alt="" style="object-position:center center">
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <button class="quick-add" type="button">Quick Add</button>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Accessories</div>
+        <div class="card-name">Smooth Leather Belt</div>
+        <div class="card-price-row"><span class="card-price">$68.00</span></div>
+        <div class="card-swatches"><span class="swatch active" style="background:#9A5A33" title="Tan"></span><span class="swatch" style="background:#2C2C2C" title="Black"></span><span class="swatch" style="background:#0D1B3E" title="Navy"></span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sec-more"><a class="btn-ghost dark" href="#">View All Best Sellers</a></div>
+</div>
+
+<!-- EDITORIAL SPLIT -->
+<div class="editorial">
+  <a class="ed-panel navy" href="#">
+    <img src="assets/fashion-header.jpg" alt="" style="object-position:center 20%">
+    <div class="ed-content">
+      <div class="ed-eyebrow">Choice · Curated Edit</div>
+      <div class="ed-title">The Resort Edit</div>
+      <div class="ed-sub">Chasing summer from the Côte d'Azur to the Arabian Gulf — a wardrobe built for light and leisure.</div>
+      <span class="btn-ghost">Explore It Now</span>
+    </div>
+  </a>
+  <a class="ed-panel cream" href="#">
+    <img src="assets/section-living.jpg" alt="" style="object-position:center 40%">
+    <div class="ed-content">
+      <div class="ed-eyebrow">Riva Home · New Arrivals</div>
+      <div class="ed-title">The Maison<br>Collection</div>
+      <div class="ed-sub">Artisanal homeware that turns the everyday into ceremony. Each piece tells a story.</div>
+      <span class="btn-primary">Shop Now</span>
+    </div>
+  </a>
+</div>
+
+<!-- RECOMMENDED -->
+<div class="sec-head">
+  <span class="eyebrow">Just landed</span>
+  <h2 class="sec-title">New <em>Arrivals</em></h2>
+  <div class="sec-rule"></div>
+</div>
+<div class="product-section">
+  <div class="product-grid">
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/fashion-header.jpg" alt="" style="object-position:center 20%">
+        <div class="card-badge">New</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="card-actions"><button class="card-action-btn atc">Add to Bag</button><button class="card-action-btn">Compare</button></div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Woman</div>
+        <div class="card-name">Printed Resort Maxi Dress</div>
+        <div class="card-swatches"><span class="swatch active" style="background:#C0556B" title="Rose"></span><span class="swatch" style="background:#FBF8F2" title="Ivory"></span><span class="swatch" style="background:#3A7D7B" title="Teal"></span><span class="swatch-count">+1</span></div>
+        <div class="card-price-row"><span class="card-price">$145.00</span></div>
+        <div class="card-compare"><input type="checkbox" id="c5"><label for="c5">Add to Compare</label></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/jewelry-header.jpg" alt="" style="object-position:center center">
+        <div class="card-badge">New</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="card-actions"><button class="card-action-btn atc">Add to Bag</button><button class="card-action-btn">Compare</button></div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Fine</div>
+        <div class="card-name">Emerald Halo Necklace</div>
+        <div class="card-swatches"><span class="swatch active" style="background:#C7A76A" title="Gold"></span><span class="swatch" style="background:#D9D9DC" title="Silver"></span></div>
+        <div class="card-price-row"><span class="card-price">$480.00</span></div>
+        <div class="card-compare"><input type="checkbox" id="c6"><label for="c6">Add to Compare</label></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/section-watches.jpg" alt="" style="object-position:65% center">
+        <div class="card-badge sale">Sale</div>
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="card-actions"><button class="card-action-btn atc">Add to Bag</button><button class="card-action-btn">Compare</button></div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Watches</div>
+        <div class="card-name">Automatic Dress Watch</div>
+        <div class="card-swatches"><span class="swatch active" style="background:#C7A76A" title="Gold"></span><span class="swatch" style="background:#9CA0A6" title="Steel"></span><span class="swatch" style="background:#6B4A2B" title="Tan Strap"></span></div>
+        <div class="card-price-row"><span class="card-price">$390.00</span><span class="card-price-was">$460.00</span><span class="card-price-save">Save 15%</span></div>
+        <div class="card-compare"><input type="checkbox" id="c7"><label for="c7">Add to Compare</label></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="card-img">
+        <img src="assets/Luggage1_9e289475-3294-481b-a675-69f2d67d68eb_600x.webp" alt="" style="object-position:center 62%">
+        <div class="card-wishlist" onclick="this.classList.toggle('active')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="card-actions"><button class="card-action-btn atc">Add to Bag</button><button class="card-action-btn">Compare</button></div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Riva Woman</div>
+        <div class="card-name">Tailored Wool Trousers</div>
+        <div class="card-swatches"><span class="swatch active" style="background:#2C2C2C" title="Black"></span><span class="swatch" style="background:#0D1B3E" title="Navy"></span><span class="swatch" style="background:#7C7468" title="Taupe"></span></div>
+        <div class="card-price-row"><span class="card-price">$98.00</span></div>
+        <div class="card-compare"><input type="checkbox" id="c8"><label for="c8">Add to Compare</label></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="sec-head">
+  <span class="eyebrow">Discover by department</span>
+  <h2 class="sec-title">The Blue Salon <em>World</em></h2>
+  <div class="sec-rule"></div>
+</div>
+<div class="department-showcase">
+  <a class="dept-card featured" href="#">
+    <img src="assets/fashion-header.jpg" alt="Women's fashion" style="object-position:center 20%">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Women</div>
+      <h3 class="dept-title">The Women's Edit</h3>
+      <span class="dept-cta">Explore the collection</span>
+    </div>
+  </a>
+
+  <a class="dept-card featured" href="#">
+    <img src="assets/vytenis-malisauskas-sOWnFcGutRw-unsplash.jpg" alt="Men's fashion">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Men</div>
+      <h3 class="dept-title">Modern Menswear</h3>
+      <span class="dept-cta">Discover menswear</span>
+    </div>
+  </a>
+
+  <a class="dept-card standard" href="#">
+    <img src="assets/kids-header.avif" alt="Kids collection">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Kids</div>
+      <h3 class="dept-title">Little Luxuries</h3>
+      <span class="dept-cta">Shop kids</span>
+    </div>
+  </a>
+
+  <a class="dept-card standard" href="#">
+    <img src="assets/beauty-header.avif" alt="Beauty collection">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Beauty</div>
+      <h3 class="dept-title">Beauty Icons</h3>
+      <span class="dept-cta">Explore beauty</span>
+    </div>
+  </a>
+
+  <a class="dept-card standard" href="#">
+    <img src="assets/luggage-header.webp" alt="Luxury luggage">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Luggage</div>
+      <h3 class="dept-title">The Art of Travel</h3>
+      <span class="dept-cta">Travel in style</span>
+    </div>
+  </a>
+
+  <a class="dept-card standard" href="#">
+    <img src="assets/section-watches.jpg" alt="Luxury watches" style="object-position:62% center">
+    <div class="dept-copy">
+      <div class="dept-eyebrow">Watches</div>
+      <h3 class="dept-title">Time Well Chosen</h3>
+      <span class="dept-cta">View timepieces</span>
+    </div>
+  </a>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <span class="eyebrow">Stay in the edit</span>
+  <h2 class="nl-title">Be First to <em>Know</em></h2>
+  <p class="nl-sub">New arrivals, exclusive offers and styling inspiration — delivered to your inbox.</p>
+  <form class="nl-form" onsubmit="return false"><input type="email" placeholder="Your email address" aria-label="Email"><button type="submit">Subscribe</button></form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">BlueSalon</div>
+      <div class="footer-desc">Contemporary fashion for the modern woman. Curated with care, crafted with intention.</div>
+      <div class="footer-social">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M22 5.8a8 8 0 0 1-2.3.6 4 4 0 0 0 1.8-2.2 8 8 0 0 1-2.5 1A4 4 0 0 0 12 8.5a11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.6 11 11 0 0 0 8 20c7.2 0 11.2-6 11.2-11.2v-.5A8 8 0 0 0 22 5.8Z"/></svg>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Information</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Returns &amp; Exchanges</a></li><li><a href="#">Shipping &amp; Delivery</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+    <div><div class="footer-col-title">Categories</div><ul class="footer-links"><li><a href="#">Women</a></li><li><a href="#">Kids</a></li><li><a href="#">Accessories</a></li><li><a href="#">Shoes</a></li><li><a href="#">Denim</a></li></ul></div>
+    <div><div class="footer-col-title">Quick Links</div><ul class="footer-links"><li><a href="#">Store Location</a></li><li><a href="#">My Account</a></li><li><a href="#">FAQs</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Gift Cards</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Riva Fashion. All rights reserved.</div>
+    <div class="footer-lang"><button class="lang-btn active">English</button><button class="lang-btn">عربي</button></div>
+  </div>
+</footer>
+
+<nav class="pageswitch" id="heroSwitcher">
+  <button class="on" data-hero="4">Reversed Editorial</button>
+  <button data-hero="1">Atelier Split</button>
+  <button data-hero="2">Full Bleed</button>
+  <button data-hero="3">Framed Gallery</button>
+</nav>
+
+<script>
+  var luxuryHeader=document.getElementById('luxury-header');
+  var mobileMenuButton=document.querySelector('.mobile-menu-button');
+
+  mobileMenuButton.addEventListener('click',function(){
+    var isOpen=luxuryHeader.classList.toggle('mobile-open');
+    mobileMenuButton.setAttribute('aria-expanded',String(isOpen));
+    mobileMenuButton.setAttribute('aria-label',isOpen?'Close departments':'Open departments');
+  });
+
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){
+      luxuryHeader.classList.remove('mobile-open');
+      mobileMenuButton.setAttribute('aria-expanded','false');
+      mobileMenuButton.setAttribute('aria-label','Open departments');
+    }
+  });
+
+  document.getElementById('heroSwitcher').addEventListener('click',function(e){
+    var btn=e.target.closest('button[data-hero]');
+    if(!btn)return;
+    var n=btn.dataset.hero;
+    document.querySelectorAll('.hero-variant').forEach(function(s){s.classList.remove('show')});
+    document.querySelector('.hero-variant[data-hero="'+n+'"]').classList.add('show');
+    document.querySelectorAll('#heroSwitcher button').forEach(function(b){b.classList.remove('on')});
+    btn.classList.add('on');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Salon — Modern Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --char:#16181c;
+    --char2:#3a3d44;
+    --muted:#8c9099;
+    --line:#e9eaec;
+    --line2:#d7d9dd;
+    --accent:#0061a5;
+    --accent-d:#00477a;
+    --cyan:#00a2d0;
+    --sale:#c0392f;
+    --sans:"Archivo",-apple-system,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+    --gut:clamp(20px,5vw,80px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--char);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  .num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--accent)}
+
+  /* top bar */
+  .top{background:var(--char);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:center;gap:40px;padding:8px 16px}
+  .top span{opacity:.6}
+  @media(max-width:680px){.top span:nth-child(n+2){display:none}}
+
+  /* header */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:30px;padding:20px var(--gut)}
+  .bar .brand img{height:24px}
+  .nav{display:flex;gap:28px;margin-left:14px}
+  .nav a{font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--char2);position:relative;padding:4px 0;transition:color .2s}
+  .nav a:hover{color:var(--accent)}
+  .nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);transition:width .25s}
+  .nav a:hover::after{width:100%}
+  .bar .right{margin-left:auto;display:flex;align-items:center;gap:18px}
+  .icon{width:20px;height:20px;stroke:var(--char);stroke-width:1.6;fill:none;cursor:pointer;transition:stroke .2s}
+  .icon:hover{stroke:var(--accent)}
+  .hamb{display:none}
+  .bag{position:relative}
+  .bag .dot{position:absolute;top:-5px;right:-6px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+  /* HERO asymmetric */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:min(86vh,820px);border-bottom:1px solid var(--line)}
+  .hero .left{display:flex;flex-direction:column;justify-content:center;padding:clamp(36px,6vw,96px) clamp(28px,5vw,84px);position:relative}
+  .hero .meta-row{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+  .hero .meta-row .rule{height:1px;width:64px;background:var(--accent)}
+  .hero h1{font-weight:700;font-size:clamp(48px,7.2vw,118px);line-height:.92;letter-spacing:-.025em}
+  .hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:0}
+  .hero .desc{margin-top:28px;max-width:40ch;color:var(--char2);font-size:16px;font-weight:300}
+  .hero .cta-row{display:flex;align-items:center;gap:24px;margin-top:40px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:12px;background:var(--char);color:#fff;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:17px 32px;transition:.25s}
+  .btn:hover{background:var(--accent)}
+  .btn svg{width:15px;height:15px;stroke:#fff;stroke-width:2;fill:none}
+  .btn.alt{background:transparent;color:var(--char);border:1px solid var(--line2);padding:16px 30px}
+  .btn.alt:hover{border-color:var(--accent);color:var(--accent)}
+  .hero .right{position:relative;overflow:hidden;background:#f3f1ee}
+  .hero .right img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+  .hero .badge-fl{position:absolute;left:26px;bottom:26px;background:rgba(255,255,255,.94);padding:14px 18px;font-size:11px;letter-spacing:.04em;max-width:230px}
+  .hero .badge-fl b{font-weight:700}
+  .hero .badge-fl .p{color:var(--accent);font-weight:700;margin-top:2px}
+
+  /* marquee */
+  .marq{border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:16px 0}
+  .marq .track{display:inline-flex;gap:54px;animation:scroll 34s linear infinite}
+  .marq span{font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--char2)}
+  .marq span.d{color:var(--accent)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* section */
+  .sec{padding:clamp(58px,8vw,110px) 0}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:46px}
+  .head .l{display:flex;flex-direction:column;gap:14px}
+  .head h2{font-weight:700;font-size:clamp(30px,4.2vw,56px);line-height:.98;letter-spacing:-.02em}
+  .head h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:0}
+  .head .meta-row{display:flex;align-items:center;gap:14px}
+  .head .meta-row .rule{height:1px;width:48px;background:var(--accent)}
+  .more{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--char);white-space:nowrap;transition:gap .25s,color .25s}
+  .more:hover{gap:15px;color:var(--accent)}
+  .more svg{width:15px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+
+  /* product */
+  .pcard{display:block;cursor:pointer}
+  .pcard .ph{position:relative;overflow:hidden;background:#f3f1ee;aspect-ratio:4/5}
+  .pcard.tall .ph{aspect-ratio:4/6.1}
+  .pcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .pcard:hover .ph img{transform:scale(1.05)}
+  .pcard .badge{position:absolute;top:14px;left:14px;background:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px}
+  .pcard .badge.sale{background:var(--sale);color:#fff}
+  .pcard .badge.acc{background:var(--accent);color:#fff}
+  .pcard .add{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.96);color:var(--char);text-align:center;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:13px;opacity:0;transform:translateY(10px);transition:.3s}
+  .pcard:hover .add{opacity:1;transform:none}
+  .pcard .add:hover{background:var(--char);color:#fff}
+  .pcard .meta{padding:16px 0 0;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .pcard .meta .nm{display:flex;flex-direction:column;gap:3px}
+  .pcard .vendor{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .pcard .name{font-size:15px;font-weight:500;letter-spacing:-.01em}
+  .pcard .price{font-size:14px;font-weight:600;white-space:nowrap}
+  .pcard .price .was{color:var(--muted);text-decoration:line-through;font-weight:400;margin-right:6px;font-size:12.5px}
+  .pcard .price .now{color:var(--sale)}
+
+  /* masonry grid */
+  .mason{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px);align-items:start}
+
+  /* full-width feature */
+  .feature{position:relative;overflow:hidden;min-height:min(70vh,640px);display:flex;align-items:flex-end}
+  .feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .feature::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,12,18,.78) 0%,rgba(8,12,18,.42) 50%,rgba(8,12,18,0) 92%)}
+  .feature .fc{position:relative;z-index:2;color:#fff;padding:clamp(36px,6vw,90px);max-width:600px;display:flex;flex-direction:column;align-items:flex-start;text-shadow:0 1px 24px rgba(0,0,0,.35)}
+  .feature .fc .eyebrow{color:var(--cyan)}
+  .feature .fc h2{font-weight:700;font-size:clamp(32px,4.4vw,64px);line-height:.98;letter-spacing:-.02em;margin:16px 0 20px}
+  .feature .fc h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+  .feature .fc p{opacity:.85;max-width:42ch;font-weight:300;margin-bottom:30px}
+  .btn.light{background:#fff;color:var(--char)}
+  .btn.light:hover{background:var(--cyan);color:#fff}
+
+  /* narrow split editorial */
+  .split2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px)}
+  .ed{position:relative;overflow:hidden;aspect-ratio:16/11;display:flex;align-items:center}
+  .ed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .ed:hover img{transform:scale(1.05)}
+  .ed::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,12,18,.55),rgba(8,12,18,.05))}
+  .ed .ec{position:relative;z-index:2;color:#fff;padding:clamp(26px,3.4vw,46px);max-width:78%}
+  .ed .ec h3{font-weight:700;font-size:clamp(24px,2.8vw,38px);line-height:1;margin:12px 0 16px;letter-spacing:-.01em}
+  .ed .ec .go{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  .ed .ec .go svg{width:14px;height:12px;stroke:#fff;stroke-width:2;fill:none}
+  .ed .ec .eyebrow{color:var(--cyan)}
+
+  /* category strip */
+  .cats{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1vw,14px)}
+  .cat{position:relative;overflow:hidden;aspect-ratio:3/4;background:#f3f1ee}
+  .cat img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .cat:hover img{transform:scale(1.07)}
+  .cat .cn{position:absolute;left:0;right:0;bottom:0;padding:16px 14px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+  .cat .cn svg{width:13px;height:11px;stroke:#fff;stroke-width:2;fill:none}
+
+  /* app */
+  .app{display:grid;grid-template-columns:1fr 1fr;background:var(--char);color:#fff;overflow:hidden}
+  .app .pic{min-height:420px;position:relative}
+  .app .pic img{width:100%;height:100%;object-fit:cover}
+  .app .txt{padding:clamp(40px,6vw,84px);display:flex;flex-direction:column;justify-content:center}
+  .app .txt .eyebrow{color:var(--cyan)}
+  .app .txt h2{font-weight:700;font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-.02em;margin:16px 0 16px}
+  .app .txt h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0;color:var(--cyan)}
+  .app .txt p{opacity:.78;font-weight:300;max-width:38ch;margin-bottom:28px}
+  .store{display:flex;gap:12px;flex-wrap:wrap}
+  .store a{border:1px solid rgba(255,255,255,.25);padding:13px 20px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:flex;gap:10px;align-items:center;transition:.25s}
+  .store a:hover{background:#fff;color:var(--char)}
+  .store a svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none}
+
+  /* newsletter */
+  .news{text-align:center;padding:clamp(60px,8vw,112px) var(--gut)}
+  .news h2{font-weight:700;font-size:clamp(32px,4.6vw,62px);line-height:.98;letter-spacing:-.025em;margin:14px 0 14px}
+  .news h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:0}
+  .news p{color:var(--char2);max-width:46ch;margin:0 auto 32px;font-weight:300}
+  .news form{display:flex;max-width:520px;margin:0 auto;border:1px solid var(--line2)}
+  .news input{flex:1;border:0;font-family:var(--sans);font-size:15px;padding:18px 20px}
+  .news input:focus{outline:none}
+  .news button{background:var(--char);color:#fff;border:0;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:0 30px;cursor:pointer;transition:background .25s}
+  .news button:hover{background:var(--accent)}
+  .news .fine{font-size:12px;color:var(--muted);margin-top:18px}
+
+  /* footer */
+  footer{background:#f7f7f6;border-top:1px solid var(--line);padding:clamp(56px,7vw,86px) 0 34px}
+  .fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:46px;border-bottom:1px solid var(--line2)}
+  .fcols h4{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;color:var(--char)}
+  .fcols ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .fcols a{font-size:13.5px;color:var(--char2);transition:color .2s}
+  .fcols a:hover{color:var(--accent)}
+  .fbrand img{height:24px;margin-bottom:18px}
+  .fbrand p{font-size:13.5px;color:var(--muted);max-width:34ch;line-height:1.7;font-weight:300}
+  .fbrand .social{display:flex;gap:14px;margin-top:20px}
+  .fbrand .social svg{width:18px;height:18px;stroke:var(--char2);stroke-width:1.6;fill:none;cursor:pointer;transition:stroke .2s}
+  .fbrand .social svg:hover{stroke:var(--accent)}
+  .fbot{display:flex;justify-content:space-between;gap:18px;padding-top:26px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .fbot .pay{display:flex;gap:8px}
+  .fbot .pay span{border:1px solid var(--line2);padding:4px 10px;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+  /* switcher */
+  .switcher{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:120;display:flex;gap:4px;background:rgba(22,24,28,.94);backdrop-filter:blur(8px);padding:6px;box-shadow:0 12px 40px rgba(0,0,0,.22)}
+  .switcher a{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:8px 14px;transition:.25s;white-space:nowrap}
+  .switcher a:hover{color:#fff}
+  .switcher a.on{background:#fff;color:var(--char)}
+
+  @media(max-width:1040px){
+    .nav{display:none}
+    .cats{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;min-height:0}
+    .hero .right{min-height:62vh;order:-1}
+    .mason{grid-template-columns:repeat(2,1fr)}
+    .split2{grid-template-columns:1fr}
+    .app{grid-template-columns:1fr}
+    .app .pic{order:-1;min-height:340px}
+    .hamb{display:block}
+  }
+  @media(max-width:560px){
+    .cats{grid-template-columns:repeat(2,1fr)}
+    .fcols{grid-template-columns:1fr 1fr}
+    .fbrand{grid-column:1/-1}
+    .pcard.tall .ph{aspect-ratio:4/5}
+    .switcher{bottom:12px}
+    .switcher a{padding:8px 10px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top"><div>Free shipping over QAR 499</div><span>·</span><div>Pay in 4 with Tabby</div><span>·</span><div>100+ stores across Qatar</div></div>
+
+<header>
+  <div class="bar">
+    <svg class="icon hamb" viewBox="0 0 24 24"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    <a class="brand" href="#"><img src="assets/logo-horizontal.svg" alt="Blue Salon"></a>
+    <nav class="nav"><a href="#">New In</a><a href="#">Women</a><a href="#">Men</a><a href="#">Kids</a><a href="#">Beauty</a><a href="#">Home</a><a href="#">Sale</a></nav>
+    <div class="right">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.4A3.6 3.6 0 0 1 12 7a3.6 3.6 0 0 1 7-1.4C19 10.6 12 20 12 20Z"/></svg>
+      <span class="bag"><svg class="icon" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="dot">2</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="left">
+    <div class="meta-row"><span class="num">01 — Resort</span><span class="rule"></span><span class="eyebrow">Spring / Summer 2026</span></div>
+    <h1>Light, <em>unhurried</em><br>days ahead.</h1>
+    <p class="desc">The Resort edit lands — fluid silhouettes, sun-warm neutrals and the accessories to carry them anywhere.</p>
+    <div class="cta-row">
+      <a class="btn" href="#">Shop the edit <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="14 5 21 12 14 19"/></svg></a>
+      <a class="btn alt" href="#">Discover new in</a>
+    </div>
+  </div>
+  <div class="right">
+    <img src="assets/women-header.webp" alt="Resort 2026">
+    <div class="badge-fl"><b>Printed Resort Maxi</b><div class="p">QAR 2,450.00</div></div>
+  </div>
+</section>
+
+<!-- marquee -->
+<div class="marq"><div class="track">
+  <span class="d">Women</span><span>Men</span><span class="d">Beauty</span><span>Jewellery</span><span class="d">Home &amp; Living</span><span>Kids</span><span class="d">Luggage</span><span>Gourmet</span>
+  <span class="d">Women</span><span>Men</span><span class="d">Beauty</span><span>Jewellery</span><span class="d">Home &amp; Living</span><span>Kids</span><span class="d">Luggage</span><span>Gourmet</span>
+</div></div>
+
+<!-- BEST SELLERS — masonry -->
+<section class="sec wrap">
+  <div class="head">
+    <div class="l">
+      <div class="meta-row"><span class="rule"></span><span class="eyebrow">Most loved</span></div>
+      <h2>The <em>best</em> sellers</h2>
+    </div>
+    <a class="more" href="#">View all <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="14 5 21 12 14 19"/></svg></a>
+  </div>
+  <div class="mason">
+    <a class="pcard tall" href="#"><div class="ph"><span class="badge acc">New</span><img src="assets/fashion-women.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Blue Salon Atelier</span><span class="name">Silk Charmeuse Blouse</span></div><span class="price">QAR 1,290</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><img src="assets/fashion-bag.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Carine</span><span class="name">Top-Handle Bag</span></div><span class="price">QAR 4,780</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><span class="badge sale">−30%</span><img src="assets/fashion-shoes.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Maison Or</span><span class="name">Satin Slingbacks</span></div><span class="price"><span class="was">2,990</span><span class="now">QAR 2,093</span></span></div></a>
+    <a class="pcard tall" href="#"><div class="ph"><span class="badge">Fine</span><img src="assets/section-jewellery.jpg" alt="" style="object-position:30% center"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">La Mara</span><span class="name">Emerald Halo Necklace</span></div><span class="price">QAR 18,500</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><img src="assets/fashion-belt.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Atelier Cuir</span><span class="name">Smooth Leather Belt</span></div><span class="price">QAR 890</span></div></a>
+    <a class="pcard tall" href="#"><div class="ph"><img src="assets/women-header.webp" alt="" style="object-position:center 22%"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Hope</span><span class="name">Resort Maxi Dress</span></div><span class="price">QAR 2,450</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><img src="assets/section-watches.jpg" alt="" style="object-position:65% center"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Horloge</span><span class="name">Dress Watch, Gold</span></div><span class="price">QAR 9,750</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><span class="badge">New</span><img src="assets/fashion-women.jpg" alt="" style="object-position:center 62%"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Blue Salon Atelier</span><span class="name">Tailored Trousers</span></div><span class="price">QAR 1,150</span></div></a>
+  </div>
+</section>
+
+<!-- FULL-WIDTH FEATURE -->
+<section class="feature">
+  <img src="assets/section-jewellery.jpg" alt="">
+  <div class="fc">
+    <div class="eyebrow">Fine Jewellery</div>
+    <h2>The <em>Emerald</em> Suite</h2>
+    <p>Hand-set emeralds and brilliant-cut diamonds in 18k gold — a private collection, available by appointment.</p>
+    <a class="btn light" href="#">Explore high jewellery</a>
+  </div>
+</section>
+
+<!-- NARROW SPLIT EDITORIAL -->
+<section class="sec wrap">
+  <div class="split2">
+    <a class="ed" href="#"><img src="assets/section-beauty.jpg" alt="">
+      <div class="ec"><div class="eyebrow">The Beauty Atelier</div><h3>Scent &amp; ceremony</h3><span class="go">Discover beauty <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="14 5 21 12 14 19"/></svg></span></div>
+    </a>
+    <a class="ed" href="#"><img src="assets/section-living.jpg" alt="">
+      <div class="ec"><div class="eyebrow">Maison Living</div><h3>Objects of desire</h3><span class="go">Shop home <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="14 5 21 12 14 19"/></svg></span></div>
+    </a>
+  </div>
+</section>
+
+<!-- RECOMMENDED -->
+<section class="sec wrap" style="padding-top:0">
+  <div class="head">
+    <div class="l">
+      <div class="meta-row"><span class="rule"></span><span class="eyebrow">Curated for you</span></div>
+      <h2>Recommended</h2>
+    </div>
+    <a class="more" href="#">View all <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="14 5 21 12 14 19"/></svg></a>
+  </div>
+  <div class="mason">
+    <a class="pcard" href="#"><div class="ph"><img src="assets/fashion-shoes.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Maison Or</span><span class="name">Pointed Slingbacks</span></div><span class="price">QAR 2,090</span></div></a>
+    <a class="pcard tall" href="#"><div class="ph"><span class="badge acc">New</span><img src="assets/fashion-bag.jpg" alt=""><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Carine</span><span class="name">Mini Structured Tote</span></div><span class="price">QAR 3,650</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><img src="assets/section-watches.jpg" alt="" style="object-position:80% center"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">Horloge</span><span class="name">Steel Sport Watch</span></div><span class="price">QAR 11,200</span></div></a>
+    <a class="pcard" href="#"><div class="ph"><img src="assets/section-jewellery.jpg" alt="" style="object-position:10% 30%"><div class="add">Add to cart</div></div><div class="meta"><div class="nm"><span class="vendor">La Mara</span><span class="name">Diamond Drop Earrings</span></div><span class="price">QAR 12,400</span></div></a>
+  </div>
+</section>
+
+<!-- CATEGORY STRIP -->
+<section class="sec wrap" style="padding-top:0">
+  <div class="head"><div class="l"><div class="meta-row"><span class="rule"></span><span class="eyebrow">Shop by category</span></div><h2>The departments</h2></div></div>
+  <div class="cats">
+    <a class="cat" href="#"><img src="assets/women-header.webp" alt=""><div class="cn">Women <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+    <a class="cat" href="#"><img src="assets/men-header.avif" alt=""><div class="cn">Men <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+    <a class="cat" href="#"><img src="assets/kids-header.avif" alt=""><div class="cn">Kids <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+    <a class="cat" href="#"><img src="assets/section-beauty.jpg" alt="" style="object-position:75% center"><div class="cn">Beauty <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+    <a class="cat" href="#"><img src="assets/section-living.jpg" alt="" style="object-position:35% center"><div class="cn">Home <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+    <a class="cat" href="#"><img src="assets/luggage-header.webp" alt=""><div class="cn">Luggage <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div></a>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="app">
+  <div class="pic"><img src="assets/app-shopping.jpg" alt="Blue Salon app"></div>
+  <div class="txt">
+    <div class="eyebrow">The Blue Salon app</div>
+    <h2>Shop the maison, <em>anywhere</em></h2>
+    <p>Private sales, instant order tracking and a wishlist that follows you across every device.</p>
+    <div class="store">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M16 2c0 2-1 3-2.5 3.5"/><path d="M5 9c0-3 2-4 4-4s2 .8 3 .8S14 5 16 5s4 1 4 4c0 6-4 11-5 11s-1.5-1-3-1-2 1-3 1-5-5-4-11Z"/></svg>App Store</a>
+      <a href="#"><svg viewBox="0 0 24 24"><polygon points="4 3 20 12 4 21 4 3"/></svg>Google Play</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <div class="eyebrow">Stay in the know</div>
+  <h2>Join the <em>House</em> List</h2>
+  <p>Be the first to discover new arrivals, designer launches and exclusive private offers.</p>
+  <form onsubmit="return false"><input type="email" placeholder="Enter your email" aria-label="Email"><button type="submit">Subscribe</button></form>
+  <div class="fine">By subscribing you agree to our Privacy Policy.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div class="fbrand">
+        <img src="assets/logo-horizontal.svg" alt="Blue Salon">
+        <p>Qatar's first and foremost luxury department store, since 1981. A coveted range of international and own brands.</p>
+        <div class="social">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M22 5.8a8 8 0 0 1-2.3.6 4 4 0 0 0 1.8-2.2 8 8 0 0 1-2.5 1A4 4 0 0 0 12 8.5a11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.6 11 11 0 0 0 8 20c7.2 0 11.2-6 11.2-11.2v-.5A8 8 0 0 0 22 5.8Z"/></svg>
+        </div>
+      </div>
+      <div><h4>Information</h4><ul><li><a href="#">About us</a></li><li><a href="#">Contact us</a></li><li><a href="#">Shipping &amp; delivery</a></li><li><a href="#">Returns &amp; exchanges</a></li><li><a href="#">Privacy policy</a></li></ul></div>
+      <div><h4>Shop</h4><ul><li><a href="#">Women</a></li><li><a href="#">Men</a></li><li><a href="#">Kids</a></li><li><a href="#">Beauty</a></li><li><a href="#">Home &amp; Living</a></li></ul></div>
+      <div><h4>Quick links</h4><ul><li><a href="#">Store locator</a></li><li><a href="#">My account</a></li><li><a href="#">Track order</a></li><li><a href="#">Gift cards</a></li><li><a href="#">FAQs</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <div>© 2026 Blue Salon · AbuIssa Holding · Doha, Qatar</div>
+      <div class="pay"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Tabby</span></div>
+    </div>
+  </div>
+</footer>
+
+<nav class="switcher">
+  <a href="Homepage — Classic Editorial.html">Classic</a>
+  <a class="on" href="Homepage — Modern Minimal.html">Minimal</a>
+  <a href="Homepage — Luxe Dark.html">Luxe Dark</a>
+  <a href="Homepage — Navy Gold.html">Navy/Gold</a>
+</nav>
+
+</body>
+</html>
