@@ -152,11 +152,11 @@ a{text-decoration:none;color:inherit}
 .h3-cta .btn-ghost:hover{border-color:var(--navy);background:rgba(13,27,62,.04)}
 
 /* HERO 4 — REVERSED EDITORIAL */
-.h4wrap{display:grid;grid-template-columns:1.15fr .85fr;min-height:min(88vh,800px)}
+.h4wrap{display:grid;grid-template-columns:1.15fr .85fr;height:min(72vh,640px);overflow:hidden;padding-top: 50px;}
 .h4-img{position:relative;overflow:hidden;background:#E8E3DC}
 .h4-img img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
 .h4-tag{position:absolute;top:26px;left:26px;background:rgba(8,40,74,.85);color:var(--gold-light);padding:9px 16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-.h4-txt{padding:clamp(48px,6vw,96px) clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;position:relative}
+.h4-txt{padding:clamp(32px,4vw,64px) clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;position:relative}
 .h4-ix{position:absolute;top:clamp(30px,4vw,56px);right:clamp(30px,4vw,56px);font-family:var(--serif);font-style:italic;font-size:72px;color:rgba(199,167,106,.35);line-height:1}
 .h4-txt .eyebrow{margin-bottom:24px}
 .h4-title{font-family:var(--serif);font-size:clamp(48px,6vw,90px);font-weight:300;line-height:.96;color:var(--title-navy);letter-spacing:.01em}
@@ -269,6 +269,13 @@ footer{border-top:1px solid rgba(212, 200, 177, 0.15);padding:clamp(54px,6vw,76p
 .pageswitch a,.pageswitch button{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 13px;transition:.2s;white-space:nowrap;background:transparent;border:none;cursor:pointer;font-family:var(--sans)}
 .pageswitch a:hover,.pageswitch button:hover{color:var(--navy-deep)}
 .pageswitch a.on,.pageswitch button.on{background:var(--gold);color:var(--navy)}
+#layoutSwitcher{bottom:80px}
+
+/* boxed layout mode */
+html:has(body.mode-boxed){background:#fff}
+body.mode-boxed{max-width:1370px;margin:0 auto;}
+body.mode-boxed .lux-announcement{width:100vw;margin-left:calc(50% - 50vw)}
+body.mode-boxed .lux-header{width:100vw;margin-left:calc(50% - 50vw)}
 
 @media(max-width:1200px){
   .header-action .action-label{display:none}
@@ -503,7 +510,7 @@ footer{border-top:1px solid rgba(212, 200, 177, 0.15);padding:clamp(54px,6vw,76p
       <div class="h4-tag">Look 01 · The Edit</div>
     </div>
     <div class="h4-txt">
-      <span class="h4-ix">01</span>
+      <!-- <span class="h4-ix">01</span> -->
       <div class="eyebrow">SS 2026 · The New Collection</div>
       <h1 class="h4-title">The <em>Resort</em><br>Chapter</h1>
       <p class="h4-sub">A wardrobe of quiet confidence — fluid silhouettes, sun-warm neutrals and the pieces to carry them anywhere.</p>
@@ -773,6 +780,11 @@ footer{border-top:1px solid rgba(212, 200, 177, 0.15);padding:clamp(54px,6vw,76p
   </div>
 </footer>
 
+<nav class="pageswitch" id="layoutSwitcher">
+  <button class="on" data-layout="full">Full Width</button>
+  <button data-layout="boxed">Boxed</button>
+</nav>
+
 <nav class="pageswitch" id="heroSwitcher">
   <button class="on" data-hero="4">Reversed Editorial</button>
   <button data-hero="1">Atelier Split</button>
@@ -796,6 +808,14 @@ footer{border-top:1px solid rgba(212, 200, 177, 0.15);padding:clamp(54px,6vw,76p
       mobileMenuButton.setAttribute('aria-expanded','false');
       mobileMenuButton.setAttribute('aria-label','Open departments');
     }
+  });
+
+  document.getElementById('layoutSwitcher').addEventListener('click',function(e){
+    var btn=e.target.closest('button[data-layout]');
+    if(!btn)return;
+    document.body.classList.toggle('mode-boxed',btn.dataset.layout==='boxed');
+    document.querySelectorAll('#layoutSwitcher button').forEach(function(b){b.classList.remove('on')});
+    btn.classList.add('on');
   });
 
   document.getElementById('heroSwitcher').addEventListener('click',function(e){
